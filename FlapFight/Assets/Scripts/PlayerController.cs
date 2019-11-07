@@ -56,7 +56,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(jump) && isGrounded)
         {
             rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, jumpForce);
-
+            SoundManagerScript.PlaySound("jump_salamisounds");
         }
 
         if (rigidbody2D.velocity.x < 0)
