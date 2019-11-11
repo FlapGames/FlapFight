@@ -4,13 +4,22 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public float knockbackMultiplier;
+    private float knockedTime;
+    public float startKnockedTime;
+    private Vector2 knockbackVector;
+
     public float moveSpeed;
     public float jumpForce;
+
+    private float timeBetweenAttack;
+    public float startTimeBetweenAttack;
 
     public KeyCode left;
     public KeyCode right;
     public KeyCode jump;
-    public KeyCode attack;
+    public KeyCode attackRanged;
+    public KeyCode attackMelee;
 
     private Rigidbody2D rigidbody2D;
 
@@ -25,6 +34,12 @@ public class PlayerController : MonoBehaviour
     public GameObject Projectile;
     public Transform throwPoint;
 
+    public Transform meleeAttackPosition;
+    public float meleeAttackRange;
+    public float meleeDamage;
+
+    public LayerMask enemies;
+
 
     // Start is called before the first frame update
     void Start()
@@ -38,9 +53,11 @@ public class PlayerController : MonoBehaviour
     {
         isGrounded = Physics2D.OverlapCircle(groundCheckPoint.position, groundCheckRadius, ground);
 
-        if((Input.GetKey(left) && Input.GetKey(right)) || (!Input.GetKey(left) && !Input.GetKey(right))){
+        
+        if((Input.GetKey(left) && Input.GetKey(right)) || (!Input.GetKey(left) && !Input.GetKey(right))){   //if both left and right are pressed, no movement on the x-axis
             rigidbody2D.velocity = new Vector2(0, rigidbody2D.velocity.y);
-        }else if (Input.GetKey(left))
+        }
+        else if (Input.GetKey(left))
         {
             rigidbody2D.velocity = new Vector2(-moveSpeed, rigidbody2D.velocity.y);
         }
@@ -68,7 +85,7 @@ public class PlayerController : MonoBehaviour
             transform.localScale = new Vector3(1, 1, 1);
         }
 
-        if (Input.GetKeyDown(attack))
+        if (Input.GetKeyDown(attackRanged))
         {
             GameObject projectileClone = (GameObject)Instantiate(Projectile, throwPoint.position, throwPoint.rotation);
             //Destroy(projectileClone, 0.5f);
@@ -76,9 +93,51 @@ public class PlayerController : MonoBehaviour
             animator.SetTrigger("AttackRanged");
         }
 
+        if (Input.GetKeyDown(attackMelee))
+        {
+            if (timeBetweenAttack <= 0)
+            {
+                timeBetweenAttack = startTimeBetweenAttack;
+                Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(meleeAttackPosition.position, meleeAttackRange, enemies);
+                for(int i = 0; i< enemiesToDamage.Length; i++)
+                {
+                    enemiesToDamage[i].GetComponent<PlayerController>().TakeDamage(meleeDamage, rigidbody2D.position.x, rigidbody2D.position.y);
+                }
+            }
+            else
+            {
+                timeBetweenAttack -= Time.deltaTime;
+            }
+
+        }
+
+        if(knockedTime > 0)
+        {
+            rigidbody2D.velocity = knockbackVector;
+            knockedTime -= Time.deltaTime;
+        }
+
 
         animator.SetFloat("Speed", Mathf.Abs(rigidbody2D.velocity.x));
         animator.SetBool("Grounded", isGrounded);
 
+    }
+
+    public void TakeDamage(float damage, float enemyPositionX, float enemyPositionY)
+    {
+        knockbackMultiplier += damage;
+        knockedTime = startKnockedTime;
+
+        Debug.Log(rigidbody2D.position.x - enemyPositionX);
+        Debug.Log(rigidbody2D.position.y - enemyPositionY);
+
+        knockbackVector = new Vector2((rigidbody2D.position.x - enemyPositionX)* knockbackMultiplier, (rigidbody2D.position.y - enemyPositionY) * knockbackMultiplier * 0.5f);
+
+    }
+
+    public void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(meleeAttackPosition.position, meleeAttackRange);
     }
 }

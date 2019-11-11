@@ -1023,7 +1023,7 @@ GameObject:
   - component: {fileID: 420165976}
   - component: {fileID: 420165975}
   - component: {fileID: 420165980}
-  m_Layer: 12
+  m_Layer: 11
   m_Name: Player1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1042,12 +1042,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e862d6a6054ed1f43b580e9b2be36b64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  knockbackMultiplier: 0
+  startKnockedTime: 0.21
   moveSpeed: 10
   jumpForce: 20
+  startTimeBetweenAttack: 0.01
   left: 97
   right: 100
   jump: 119
-  attack: 32
+  attackRanged: 32
+  attackMelee: 102
   groundCheckPoint: {fileID: 995162362}
   groundCheckRadius: 0.2
   ground:
@@ -1057,6 +1061,12 @@ MonoBehaviour:
   Projectile: {fileID: 6578768773885820896, guid: b15c6ce30b1a72e458cc87d28c536166,
     type: 3}
   throwPoint: {fileID: 1979217548}
+  meleeAttackPosition: {fileID: 982225554}
+  meleeAttackRange: 1.43
+  meleeDamage: 2
+  enemies:
+    serializedVersion: 2
+    m_Bits: 4096
 --- !u!50 &420165976
 Rigidbody2D:
   serializedVersion: 4
@@ -1166,6 +1176,7 @@ Transform:
   m_Children:
   - {fileID: 995162362}
   - {fileID: 1979217548}
+  - {fileID: 982225554}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3143,6 +3154,36 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &982225553
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 982225554}
+  m_Layer: 11
+  m_Name: AttackPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &982225554
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 982225553}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.451, y: -0.062, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 420165979}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &995162361
 GameObject:
   m_ObjectHideFlags: 0
@@ -3152,7 +3193,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 995162362}
-  m_Layer: 12
+  m_Layer: 11
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5511,6 +5552,36 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1568727767
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1568727768}
+  m_Layer: 12
+  m_Name: AttackPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1568727768
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1568727767}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.583, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1848311438}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1571424206
 GameObject:
   m_ObjectHideFlags: 0
@@ -6877,12 +6948,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e862d6a6054ed1f43b580e9b2be36b64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  knockbackMultiplier: 0
+  startKnockedTime: 0.28
   moveSpeed: 10
   jumpForce: 20
+  startTimeBetweenAttack: 0.01
   left: 276
   right: 275
   jump: 273
-  attack: 13
+  attackRanged: 13
+  attackMelee: 127
   groundCheckPoint: {fileID: 664405775}
   groundCheckRadius: 0.2
   ground:
@@ -6892,6 +6967,12 @@ MonoBehaviour:
   Projectile: {fileID: 6578768773885820896, guid: b15c6ce30b1a72e458cc87d28c536166,
     type: 3}
   throwPoint: {fileID: 1813992473}
+  meleeAttackPosition: {fileID: 1568727768}
+  meleeAttackRange: 1.43
+  meleeDamage: 2
+  enemies:
+    serializedVersion: 2
+    m_Bits: 2048
 --- !u!50 &1848311435
 Rigidbody2D:
   serializedVersion: 4
@@ -7001,6 +7082,7 @@ Transform:
   m_Children:
   - {fileID: 664405775}
   - {fileID: 1813992473}
+  - {fileID: 1568727768}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7227,7 +7309,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1979217548}
-  m_Layer: 12
+  m_Layer: 11
   m_Name: ThrowPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
