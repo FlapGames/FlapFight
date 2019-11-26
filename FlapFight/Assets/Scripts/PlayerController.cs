@@ -51,6 +51,10 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(rigidbody2D.position.y < -6)
+        {
+            Destroy(this.gameObject);
+        }
         isGrounded = Physics2D.OverlapCircle(groundCheckPoint.position, groundCheckRadius, ground);
 
         
@@ -93,9 +97,9 @@ public class PlayerController : MonoBehaviour
             animator.SetTrigger("AttackRanged");
         }
 
-        if (Input.GetKeyDown(attackMelee))
+        if (timeBetweenAttack <= 0)
         {
-            if (timeBetweenAttack <= 0)
+            if (Input.GetKeyDown(attackMelee))
             {
                 timeBetweenAttack = startTimeBetweenAttack;
                 Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(meleeAttackPosition.position, meleeAttackRange, enemies);
@@ -104,14 +108,14 @@ public class PlayerController : MonoBehaviour
                     enemiesToDamage[i].GetComponent<PlayerController>().TakeDamage(meleeDamage, rigidbody2D.position.x, rigidbody2D.position.y);
                 }
             }
-            else
-            {
-                timeBetweenAttack -= Time.deltaTime;
-            }
-
+        }
+        else
+        {
+            timeBetweenAttack -= Time.deltaTime;
         }
 
-        if(knockedTime > 0)
+
+        if (knockedTime > 0)
         {
             rigidbody2D.velocity = knockbackVector;
             knockedTime -= Time.deltaTime;
