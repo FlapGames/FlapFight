@@ -51,13 +51,20 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        //Death
+
         if(rigidbody2D.position.y < -6)
         {
             Destroy(this.gameObject);
         }
         isGrounded = Physics2D.OverlapCircle(groundCheckPoint.position, groundCheckRadius, ground);
 
+
+        //Movement
         
+            //Directional
+
         if((Input.GetKey(left) && Input.GetKey(right)) || (!Input.GetKey(left) && !Input.GetKey(right))){   //if both left and right are pressed, no movement on the x-axis
             rigidbody2D.velocity = new Vector2(0, rigidbody2D.velocity.y);
         }
@@ -74,20 +81,29 @@ public class PlayerController : MonoBehaviour
             rigidbody2D.velocity = new Vector2(0, rigidbody2D.velocity.y);
         }
 
+            //Jumping
+
         if (Input.GetKeyDown(jump) && isGrounded)
         {
             rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, jumpForce);
             SoundManagerScript.PlaySound("jump_salamisounds");
+            animator.SetTrigger("JumpInitiate");
+
         }
 
-        if (rigidbody2D.velocity.x < 0)
+
+
+        //Knockback
+
+        if (knockedTime > 0)
         {
-            transform.localScale = new Vector3(-1, 1, 1);
+            rigidbody2D.velocity = knockbackVector;
+            knockedTime -= Time.deltaTime;
         }
-        else if(rigidbody2D.velocity.x > 0)
-        {
-            transform.localScale = new Vector3(1, 1, 1);
-        }
+
+        //Attacks
+
+            //AttackRanged
 
         if (Input.GetKeyDown(attackRanged))
         {
@@ -96,6 +112,8 @@ public class PlayerController : MonoBehaviour
             projectileClone.transform.localScale = transform.localScale;
             animator.SetTrigger("AttackRanged");
         }
+
+            //AttackMelee
 
         if (timeBetweenAttack <= 0)
         {
@@ -107,6 +125,7 @@ public class PlayerController : MonoBehaviour
                 {
                     enemiesToDamage[i].GetComponent<PlayerController>().TakeDamage(meleeDamage, rigidbody2D.position.x, rigidbody2D.position.y);
                 }
+                animator.SetTrigger("AttackMeleePunchOne");
             }
         }
         else
@@ -115,12 +134,19 @@ public class PlayerController : MonoBehaviour
         }
 
 
-        if (knockedTime > 0)
+
+        //Sprite flipping
+
+        if (rigidbody2D.velocity.x < 0)
         {
-            rigidbody2D.velocity = knockbackVector;
-            knockedTime -= Time.deltaTime;
+            transform.localScale = new Vector3(-1, 1, 1);
+        }
+        else if (rigidbody2D.velocity.x > 0)
+        {
+            transform.localScale = new Vector3(1, 1, 1);
         }
 
+        //Animator
 
         animator.SetFloat("Speed", Mathf.Abs(rigidbody2D.velocity.x));
         animator.SetBool("Grounded", isGrounded);
