@@ -12,8 +12,12 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed;
     public float jumpForce;
 
-    private float timeBetweenAttack;
-    public float startTimeBetweenAttack;
+    private float timeBetweenMeleeAttack;
+    public float startTimeBetweenMeleeAttack;
+
+    private float timeBetweenRangedAttack;
+    public float startTimeBetweenRangedAttack;
+    private bool isPlayerShooting;
 
     public KeyCode left;
     public KeyCode right;
@@ -58,14 +62,17 @@ public class PlayerController : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+        
+        //Check for Ground, needed for jumping
+
         isGrounded = Physics2D.OverlapCircle(groundCheckPoint.position, groundCheckRadius, ground);
 
 
         //Movement
-        
+
             //Directional
 
-        if((Input.GetKey(left) && Input.GetKey(right)) || (!Input.GetKey(left) && !Input.GetKey(right))){   //if both left and right are pressed, no movement on the x-axis
+        if ((Input.GetKey(left) && Input.GetKey(right)) || (!Input.GetKey(left) && !Input.GetKey(right))){   //if both left and right are pressed, no movement on the x-axis
             rigidbody2D.velocity = new Vector2(0, rigidbody2D.velocity.y);
         }
         else if (Input.GetKey(left))
@@ -105,21 +112,35 @@ public class PlayerController : MonoBehaviour
 
             //AttackRanged
 
-        if (Input.GetKeyDown(attackRanged))
+        if(timeBetweenRangedAttack <= 0 && isPlayerShooting)
         {
+            
+            isPlayerShooting = false;
             GameObject projectileClone = (GameObject)Instantiate(Projectile, throwPoint.position, throwPoint.rotation);
             //Destroy(projectileClone, 0.5f);
             projectileClone.transform.localScale = transform.localScale;
+
+        } 
+        else if(timeBetweenRangedAttack <= 0 && Input.GetKeyDown(attackRanged))
+        {
             animator.SetTrigger("AttackRanged");
+            isPlayerShooting = true;
+            timeBetweenRangedAttack = startTimeBetweenRangedAttack;
+
         }
+        else
+        {
+            timeBetweenRangedAttack -= Time.deltaTime;
+        }
+       
 
             //AttackMelee
 
-        if (timeBetweenAttack <= 0)
+        if (timeBetweenMeleeAttack <= 0)
         {
             if (Input.GetKeyDown(attackMelee))
             {
-                timeBetweenAttack = startTimeBetweenAttack;
+                timeBetweenMeleeAttack = startTimeBetweenMeleeAttack;
                 Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(meleeAttackPosition.position, meleeAttackRange, enemies);
                 for(int i = 0; i< enemiesToDamage.Length; i++)
                 {
@@ -130,9 +151,8 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            timeBetweenAttack -= Time.deltaTime;
+            timeBetweenMeleeAttack -= Time.deltaTime;
         }
-
 
 
         //Sprite flipping
@@ -158,8 +178,8 @@ public class PlayerController : MonoBehaviour
         knockbackMultiplier += damage;
         knockedTime = startKnockedTime;
 
-        Debug.Log(rigidbody2D.position.x - enemyPositionX);
-        Debug.Log(rigidbody2D.position.y - enemyPositionY);
+        //Debug.Log(rigidbody2D.position.x - enemyPositionX);
+        //Debug.Log(rigidbody2D.position.y - enemyPositionY);
 
         knockbackVector = new Vector2((rigidbody2D.position.x - enemyPositionX)* knockbackMultiplier, (rigidbody2D.position.y - enemyPositionY) * knockbackMultiplier * 0.5f);
 
