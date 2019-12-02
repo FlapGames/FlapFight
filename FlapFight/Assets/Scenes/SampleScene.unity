@@ -350,10 +350,10 @@ GameObject:
   m_Component:
   - component: {fileID: 420165979}
   - component: {fileID: 420165978}
-  - component: {fileID: 420165977}
   - component: {fileID: 420165976}
   - component: {fileID: 420165975}
   - component: {fileID: 420165980}
+  - component: {fileID: 420165981}
   m_Layer: 11
   m_Name: Player1
   m_TagString: Untagged
@@ -420,32 +420,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!61 &420165977
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 420165974}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 1
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.016936302, y: -0.12621325}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.5, y: 1.6666666}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.7879162, y: 1.247193}
-  m_EdgeRadius: 0
 --- !u!212 &420165978
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -531,6 +505,22 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!70 &420165981
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 420165974}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.017304897, y: -0.12930125}
+  m_Size: {x: 0.716979, y: 1.2456733}
+  m_Direction: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -543,6 +533,7 @@ GameObject:
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
   - component: {fileID: 519420030}
+  - component: {fileID: 519420033}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -681,7 +672,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 12.381553
+  orthographic size: 4.18
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -711,6 +702,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &519420033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66a893e4cd6340d43a9b6e12732eef97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player1: {fileID: 420165979}
+  player2: {fileID: 1848311438}
+  offset: {x: 0, y: 0, z: -1}
+  minZoom: 5
+  maxZoom: 15
+  zoomLimiter: 15
+  smoothSpeed: 0
 --- !u!1 &544220046
 GameObject:
   m_ObjectHideFlags: 0
@@ -2227,10 +2237,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1848311438}
   - component: {fileID: 1848311437}
-  - component: {fileID: 1848311436}
   - component: {fileID: 1848311435}
   - component: {fileID: 1848311434}
   - component: {fileID: 1848311433}
+  - component: {fileID: 1848311436}
   m_Layer: 12
   m_Name: Player2
   m_TagString: Untagged
@@ -2316,8 +2326,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!61 &1848311436
-BoxCollider2D:
+--- !u!70 &1848311436
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -2329,19 +2339,9 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.022334814, y: -0.1462121}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.5, y: 1.6666666}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.6889882, y: 1.2092533}
-  m_EdgeRadius: 0
+  m_Offset: {x: -0.0019812584, y: -0.15069854}
+  m_Size: {x: 0.67972946, y: 1.2146888}
+  m_Direction: 0
 --- !u!212 &1848311437
 SpriteRenderer:
   m_ObjectHideFlags: 0

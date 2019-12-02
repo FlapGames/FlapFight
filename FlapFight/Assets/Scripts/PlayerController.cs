@@ -90,7 +90,7 @@ public class PlayerController : MonoBehaviour
 
             //Jumping
 
-        if (Input.GetKeyDown(jump) && isGrounded)
+        if (Input.GetKeyDown(jump) && isGrounded && !isPlayerShooting)
         {
             rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, jumpForce);
             SoundManagerScript.PlaySound("jump_salamisounds");
@@ -123,8 +123,17 @@ public class PlayerController : MonoBehaviour
         } 
         else if(timeBetweenRangedAttack <= 0 && Input.GetKeyDown(attackRanged))
         {
-            animator.SetTrigger("AttackRanged");
+            if (!isGrounded)
+            {
+                animator.SetTrigger("AttackRangedJump");
+            }
+            else
+            {
+                animator.SetTrigger("AttackRanged");
+            }
+
             isPlayerShooting = true;
+
             timeBetweenRangedAttack = startTimeBetweenRangedAttack;
 
         }
@@ -170,6 +179,16 @@ public class PlayerController : MonoBehaviour
 
         animator.SetFloat("Speed", Mathf.Abs(rigidbody2D.velocity.x));
         animator.SetBool("Grounded", isGrounded);
+        animator.SetBool("Shooting", isPlayerShooting);
+
+        if(!isGrounded && rigidbody2D.velocity.y < 0 && !isPlayerShooting)
+        {
+            animator.SetTrigger("Falling");
+        }
+        else if(!isGrounded && !isPlayerShooting)
+        {
+            animator.SetTrigger("Flying");
+        }
 
     }
 
