@@ -190,6 +190,20 @@ public class PlayerController : MonoBehaviour
             animator.SetTrigger("Flying");
         }
 
+        if(knockedTime > 0)
+        {
+            animator.SetTrigger("Knockbacked");
+
+            if (rigidbody2D.velocity.x < 0)
+            {
+                transform.localScale = new Vector3(1, 1, 1);
+            }
+            else if (rigidbody2D.velocity.x > 0)
+            {
+                transform.localScale = new Vector3(-1, 1, 1);
+            }
+        }
+
     }
 
     public void TakeDamage(float damage, float enemyPositionX, float enemyPositionY)
