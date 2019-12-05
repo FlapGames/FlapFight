@@ -93,7 +93,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(jump) && isGrounded && !isPlayerShooting)
         {
             rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, jumpForce);
-            SoundManagerScript.PlaySound("jump_salamisounds");
+            SoundManagerScript.PlaySound("Jumpsound");
             animator.SetTrigger("JumpInitiate");
 
         }
@@ -156,6 +156,7 @@ public class PlayerController : MonoBehaviour
                     enemiesToDamage[i].GetComponent<PlayerController>().TakeDamage(meleeDamage, rigidbody2D.position.x, rigidbody2D.position.y);
                 }
                 animator.SetTrigger("AttackMeleePunchOne");
+                SoundManagerScript.PlaySound("Melee");
             }
         }
         else
