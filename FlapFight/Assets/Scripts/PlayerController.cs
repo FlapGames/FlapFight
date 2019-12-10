@@ -9,6 +9,10 @@ public class PlayerController : MonoBehaviour
     public float startKnockedTime;
     private Vector2 knockbackVector;
 
+    public float shieldDurability = 100;
+
+    public float amountOfJumpsLeft;
+
     public float moveSpeed;
     public float jumpForce;
 
@@ -24,6 +28,7 @@ public class PlayerController : MonoBehaviour
     public KeyCode jump;
     public KeyCode attackRanged;
     public KeyCode attackMelee;
+    public KeyCode block;
 
     private Rigidbody2D rigidbody2D;
 
@@ -31,7 +36,12 @@ public class PlayerController : MonoBehaviour
     public float groundCheckRadius;
     public LayerMask ground;
 
+    public Transform wallCheckPoint;
+    public float wallCheckRadius;
+
     public bool isGrounded;
+    public bool isTouchingWall;
+    public bool isBlocking;
 
     private Animator animator;
 
@@ -67,10 +77,13 @@ public class PlayerController : MonoBehaviour
 
         isGrounded = Physics2D.OverlapCircle(groundCheckPoint.position, groundCheckRadius, ground);
 
+        isTouchingWall = Physics2D.OverlapCircle(wallCheckPoint.position, wallCheckRadius, ground);
+
+        Debug.Log(isTouchingWall);
 
         //Movement
 
-            //Directional
+        //Directional
 
         if ((Input.GetKey(left) && Input.GetKey(right)) || (!Input.GetKey(left) && !Input.GetKey(right))){   //if both left and right are pressed, no movement on the x-axis
             rigidbody2D.velocity = new Vector2(0, rigidbody2D.velocity.y);
@@ -88,14 +101,20 @@ public class PlayerController : MonoBehaviour
             rigidbody2D.velocity = new Vector2(0, rigidbody2D.velocity.y);
         }
 
-            //Jumping
-
-        if (Input.GetKeyDown(jump) && isGrounded && !isPlayerShooting)
+        //Jumping
+        
+        if (Input.GetKeyDown(jump) && amountOfJumpsLeft > 0 && !isPlayerShooting)
         {
+            amountOfJumpsLeft--;
             rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, jumpForce);
             SoundManagerScript.PlaySound("Jumpsound");
             animator.SetTrigger("JumpInitiate");
 
+        }
+
+        if (isGrounded || isTouchingWall)
+        {
+            amountOfJumpsLeft = 1;
         }
 
 
@@ -164,10 +183,31 @@ public class PlayerController : MonoBehaviour
             timeBetweenMeleeAttack -= Time.deltaTime;
         }
 
+            //Blocking    
 
-        //Sprite flipping
+        if (Input.GetKey(block) && shieldDurability > 0)
+        {
+            isBlocking = true;
+            if(shieldDurability > 0)
+            {
+                shieldDurability -= 0.16f;
+            }
+            
+        }
+        else
+        {
+            isBlocking = false;
 
-        if (rigidbody2D.velocity.x < 0)
+            if (shieldDurability < 100)
+            {
+                shieldDurability += 0.08f;
+            }
+        }
+
+
+            //Sprite flipping
+
+            if (rigidbody2D.velocity.x < 0)
         {
             transform.localScale = new Vector3(-1, 1, 1);
         }
@@ -205,10 +245,21 @@ public class PlayerController : MonoBehaviour
             }
         }
 
+        //TODO
+        if(isBlocking)
+        {
+            //animator.SetTrigger("Blocking");
+        }
+
     }
 
     public void TakeDamage(float damage, float enemyPositionX, float enemyPositionY)
     {
+        if (isBlocking)
+        {
+            shieldDurability -= 20;
+            return;
+        }
         knockbackMultiplier += damage;
         knockedTime = startKnockedTime;
 
