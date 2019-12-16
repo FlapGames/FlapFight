@@ -54,12 +54,15 @@ public class PlayerController : MonoBehaviour
 
     public LayerMask enemies;
 
+    public static bool GameIsOver;
+
 
     // Start is called before the first frame update
     void Start()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        GameIsOver = false;
     }
 
     // Update is called once per frame
@@ -71,8 +74,9 @@ public class PlayerController : MonoBehaviour
         if(rigidbody2D.position.y < -6)
         {
             Destroy(this.gameObject);
+            GameIsOver = true; 
         }
-        
+
         //Check for Ground, needed for jumping
 
         isGrounded = Physics2D.OverlapCircle(groundCheckPoint.position, groundCheckRadius, ground);
