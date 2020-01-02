@@ -221,7 +221,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: 0
+  m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -1014,7 +1014,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 376279965}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1747195398}
+        m_MethodName: PlayMap3
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &376279965
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1418,7 +1429,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 548365613}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1747195398}
+        m_MethodName: PlayMap4
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &548365613
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1735,7 +1757,18 @@ MonoBehaviour:
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1848957486}
+        m_MethodName: SetVolume
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &710061610
 GameObject:
   m_ObjectHideFlags: 0
@@ -3167,7 +3200,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: 0
+  m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -3704,8 +3737,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 16.3, y: -3.2}
-  m_SizeDelta: {x: 773, y: 338}
+  m_AnchoredPosition: {x: 0.000012204, y: 0.0000061989}
+  m_SizeDelta: {x: 954.4, y: 468.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1747195397
 MonoBehaviour:
@@ -3880,6 +3913,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1848957485}
+  - component: {fileID: 1848957486}
   m_Layer: 5
   m_Name: OptionsMenu
   m_TagString: Untagged
@@ -3907,9 +3941,21 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -4.4, y: -3.2}
-  m_SizeDelta: {x: 335.4, y: 338}
+  m_AnchoredPosition: {x: -0.0000060797, y: -7.5}
+  m_SizeDelta: {x: 461.8, y: 478.6}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1848957486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1848957484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02e93c7cb6c38a0409e0844cb7809783, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1896279484
 GameObject:
   m_ObjectHideFlags: 0
@@ -4085,8 +4131,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -4.4, y: -3.2}
-  m_SizeDelta: {x: 335.4, y: 338}
+  m_AnchoredPosition: {x: -0.000005722, y: -3.2}
+  m_SizeDelta: {x: 441.3, y: 487.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1975529427
 MonoBehaviour:
@@ -4322,7 +4368,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2046177320}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1747195398}
+        m_MethodName: PlayMap2
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2046177320
 MonoBehaviour:
   m_ObjectHideFlags: 0
