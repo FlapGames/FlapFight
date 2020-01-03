@@ -10,12 +10,15 @@ public class GameUI : MonoBehaviour
   float currentTime;
   float startingTime;
   float numberOfLives;
-  
+
+
   [SerializeField] Text coundownText;
 
   public GameObject TimeModeDisplay;
 
   Color color = Color.red;
+
+  public GameObject player;
 
   private void Start()
   {
@@ -53,10 +56,15 @@ public class GameUI : MonoBehaviour
   public void updateHealthbar(float damage)
   {
     if (numberOfLives - damage <= 0)
+    {
       numberOfLives = 0;
+    }
     else
+    {
       numberOfLives -= damage;
+    }
 
+    //player.GetComponent<PlayerController>().knockbackMultiplier
     currentHealthBar.rectTransform.localScale = new Vector3(numberOfLives, 1, 1);
   }
 }
