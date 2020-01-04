@@ -1276,12 +1276,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94d757ff753266b488f1a23e25da8f24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player1: {fileID: 0}
-  Player2: {fileID: 0}
-  currentHealthBarPlayer1: {fileID: 0}
-  currentHealthBarPlayer2: {fileID: 0}
+  currentHealthBar: {fileID: 0}
   coundownText: {fileID: 0}
   TimeModeDisplay: {fileID: 0}
+  player: {fileID: 420165974}
 --- !u!212 &420165978
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2633,12 +2631,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94d757ff753266b488f1a23e25da8f24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player1: {fileID: 0}
-  Player2: {fileID: 0}
-  currentHealthBarPlayer1: {fileID: 0}
-  currentHealthBarPlayer2: {fileID: 0}
+  currentHealthBar: {fileID: 0}
   coundownText: {fileID: 0}
   TimeModeDisplay: {fileID: 753230177}
+  player: {fileID: 0}
 --- !u!1 &731428077
 GameObject:
   m_ObjectHideFlags: 0
@@ -2729,12 +2725,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94d757ff753266b488f1a23e25da8f24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player1: {fileID: 0}
-  Player2: {fileID: 0}
-  currentHealthBarPlayer1: {fileID: 0}
-  currentHealthBarPlayer2: {fileID: 0}
+  currentHealthBar: {fileID: 0}
   coundownText: {fileID: 1918779905}
   TimeModeDisplay: {fileID: 0}
+  player: {fileID: 0}
 --- !u!114 &753230180
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5832,12 +5826,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94d757ff753266b488f1a23e25da8f24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player1: {fileID: 420165974}
-  Player2: {fileID: 1848311432}
-  currentHealthBarPlayer1: {fileID: 607158077}
-  currentHealthBarPlayer2: {fileID: 692474464}
+  currentHealthBar: {fileID: 0}
   coundownText: {fileID: 0}
   TimeModeDisplay: {fileID: 0}
+  player: {fileID: 0}
 --- !u!1 &1512014679
 GameObject:
   m_ObjectHideFlags: 0
@@ -6979,12 +6971,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94d757ff753266b488f1a23e25da8f24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player1: {fileID: 0}
-  Player2: {fileID: 0}
-  currentHealthBarPlayer1: {fileID: 0}
-  currentHealthBarPlayer2: {fileID: 0}
+  currentHealthBar: {fileID: 0}
   coundownText: {fileID: 0}
   TimeModeDisplay: {fileID: 0}
+  player: {fileID: 0}
 --- !u!1 &1894043242
 GameObject:
   m_ObjectHideFlags: 0
