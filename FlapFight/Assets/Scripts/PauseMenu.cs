@@ -28,34 +28,32 @@ public class PauseMenu : MonoBehaviour
 
     if (PlayerController.GameIsOver)
     {
-      restartMenuUI.SetActive(true);
-
       Time.timeScale = 0f;
+
+      restartMenuUI.SetActive(true);
     }
     else
     {
       restartMenuUI.SetActive(false);
-
-      Time.timeScale = 1f;
     }
   }
 
   public void Resume()
   {
-    pauseMenuUI.SetActive(false);
-
     Time.timeScale = 1f;
 
     GameIsPaused = false;
+
+    pauseMenuUI.SetActive(false);
   }
 
   void Pause()
   {
-    pauseMenuUI.SetActive(true);
-
     Time.timeScale = 0f;
 
     GameIsPaused = true;
+
+    pauseMenuUI.SetActive(true);
   }
 
   public void LoadMenu()
@@ -72,8 +70,6 @@ public class PauseMenu : MonoBehaviour
 
   public void Restart()
   {
-    Time.timeScale = 1f;
-
     SceneManager.LoadScene(1);
   }
 }
