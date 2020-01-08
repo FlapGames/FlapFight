@@ -85,7 +85,7 @@ public class PlayerController : MonoBehaviour
 
     isTouchingWall = Physics2D.OverlapCircle(wallCheckPoint.position, wallCheckRadius, ground);
 
-    Debug.Log(isTouchingWall);
+    //Debug.Log(isTouchingWall);
 
     //Movement
 
@@ -274,6 +274,11 @@ public class PlayerController : MonoBehaviour
     //Debug.Log(rigidbody2D.position.y - enemyPositionY);
 
     knockbackVector = new Vector2((rigidbody2D.position.x - enemyPositionX) * knockbackMultiplier, (rigidbody2D.position.y - enemyPositionY) * knockbackMultiplier * 0.5f);
+  }
+
+  public void PickUpItem(int itemID)
+  {
+
   }
 
   public void OnDrawGizmosSelected()
