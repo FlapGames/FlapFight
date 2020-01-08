@@ -16,7 +16,7 @@ public class GameUI : MonoBehaviour
 
   private void Start()
   {
-    startingTime = 7f;
+    startingTime = 59f;
 
     currentTime = startingTime;
   }
