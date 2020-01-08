@@ -85,7 +85,7 @@ public class PlayerController : MonoBehaviour
 
     isTouchingWall = Physics2D.OverlapCircle(wallCheckPoint.position, wallCheckRadius, ground);
 
-    Debug.Log(isTouchingWall);
+    //Debug.Log(isTouchingWall);
 
     //Movement
 
@@ -192,7 +192,7 @@ public class PlayerController : MonoBehaviour
 
     //Blocking    
 
-    if (Input.GetKey(block) && shieldDurability > 0)
+    if (Input.GetKey(block) && shieldDurability > 15)
     {
       isBlocking = true;
       if (shieldDurability > 0)
@@ -253,9 +253,9 @@ public class PlayerController : MonoBehaviour
     }
 
     //TODO
-    if (isBlocking)
+    if (isBlocking && shieldDurability > 16)
     {
-      //animator.SetTrigger("Blocking");
+      animator.SetTrigger("Blocking");
     }
 
   }
@@ -274,6 +274,11 @@ public class PlayerController : MonoBehaviour
     //Debug.Log(rigidbody2D.position.y - enemyPositionY);
 
     knockbackVector = new Vector2((rigidbody2D.position.x - enemyPositionX) * knockbackMultiplier, (rigidbody2D.position.y - enemyPositionY) * knockbackMultiplier * 0.5f);
+  }
+
+  public void PickUpItem(int itemID)
+  {
+
   }
 
   public void OnDrawGizmosSelected()
