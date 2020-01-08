@@ -58,11 +58,11 @@ public class PlayerController : MonoBehaviour
 
   public static bool GameIsOver;
 
+  public bool PlayerIsDeath;
+
   public Image currentHealthBar;
 
-  float numberOfLives;
-
-  public static bool PlayerDeath;
+  public float numberOfLives;
 
   // Start is called before the first frame update
   void Start()
@@ -72,7 +72,7 @@ public class PlayerController : MonoBehaviour
     GameIsOver = false;
     Time.timeScale = 1f;
     numberOfLives = 1f;
-    PlayerDeath = false;
+    PlayerIsDeath = false;
   }
 
   // Update is called once per frame
@@ -81,9 +81,9 @@ public class PlayerController : MonoBehaviour
     //Death
     if (rigidbody2D.position.y < -6 || numberOfLives == 0)
     {
-      Destroy(this.gameObject);
+      PlayerIsDeath = true;
       GameIsOver = true;
-      PlayerDeath = true;
+      Destroy(this.gameObject);
     }
 
     //Check for Ground, needed for jumping
@@ -297,7 +297,8 @@ public class PlayerController : MonoBehaviour
     if (numberOfLives - 0.1f <= 0)
     {
       numberOfLives = 0;
-      PlayerDeath = true;
+      PlayerIsDeath = true;
+      GameIsOver = true;
     }
       
     else

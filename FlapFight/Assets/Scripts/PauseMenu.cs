@@ -2,17 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using System.Threading;
+using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
   public static bool GameIsPaused = false;
-  
+
+  public GameObject Player1;
+  public GameObject Player2;
+  [SerializeField] Text Winner;
+
   public GameObject pauseMenuUI;
   public GameObject restartMenuUI;
 
-  [SerializeField] GameObject Winner;
-  
   // Update is called once per frame
   void Update()
   {
@@ -32,11 +34,9 @@ public class PauseMenu : MonoBehaviour
     {
       Time.timeScale = 0f;
 
+      CalculateWinner();
+
       restartMenuUI.SetActive(true);
-    }
-    else
-    {
-      restartMenuUI.SetActive(false);
     }
   }
 
@@ -75,5 +75,20 @@ public class PauseMenu : MonoBehaviour
     SceneManager.LoadScene(1);
   }
 
-  
+  void CalculateWinner()
+  {
+    if (Player1.GetComponent<PlayerController>().PlayerIsDeath || Player2.GetComponent<PlayerController>().numberOfLives > Player1.GetComponent<PlayerController>().numberOfLives)
+    {
+      Winner.text = "PLAYER 2";
+    }
+    else if (Player2.GetComponent<PlayerController>().PlayerIsDeath || Player2.GetComponent<PlayerController>().numberOfLives > Player1.GetComponent<PlayerController>().numberOfLives)
+    {
+      Winner.text = "PLAYER 1";
+    }
+    else if (Player1.GetComponent<PlayerController>().numberOfLives == Player2.GetComponent<PlayerController>().numberOfLives)
+    {
+      Winner.text = "DRAW";
+    }
+  }
+
 }

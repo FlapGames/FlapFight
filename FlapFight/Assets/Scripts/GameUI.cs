@@ -8,7 +8,6 @@ public class GameUI : MonoBehaviour
   float currentTime;
   float startingTime;
   
-  
   [SerializeField] Text coundownText;
 
   public GameObject TimeModeDisplay;
@@ -17,7 +16,7 @@ public class GameUI : MonoBehaviour
 
   private void Start()
   {
-    startingTime = 59f;
+    startingTime = 7f;
 
     currentTime = startingTime;
   }
@@ -43,5 +42,4 @@ public class GameUI : MonoBehaviour
     }
   }
 
-  
 }
