@@ -10,22 +10,22 @@ public class MapMenu : MonoBehaviour
 
   public void PlayMap1()
   {
-    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    SceneManager.LoadScene("SampleScene");
   }
 
   public void PlayMap2()
   {
-    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
+    SceneManager.LoadScene("Forest Arena");
   }
 
   public void PlayMap3()
   {
-    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 3);
+    SceneManager.LoadScene("Cave");
   }
 
   public void PlayMap4()
   {
-    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 4);
+    SceneManager.LoadScene("MountainsMP");
   }
 
   public void TimeMode()
