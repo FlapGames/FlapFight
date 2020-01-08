@@ -192,7 +192,7 @@ public class PlayerController : MonoBehaviour
 
     //Blocking    
 
-    if (Input.GetKey(block) && shieldDurability > 0)
+    if (Input.GetKey(block) && shieldDurability > 15)
     {
       isBlocking = true;
       if (shieldDurability > 0)
@@ -253,9 +253,9 @@ public class PlayerController : MonoBehaviour
     }
 
     //TODO
-    if (isBlocking)
+    if (isBlocking && shieldDurability > 16)
     {
-      //animator.SetTrigger("Blocking");
+      animator.SetTrigger("Blocking");
     }
 
   }
