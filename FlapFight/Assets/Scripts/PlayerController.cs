@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -57,7 +58,11 @@ public class PlayerController : MonoBehaviour
 
   public static bool GameIsOver;
 
+  public Image currentHealthBar;
 
+  float numberOfLives;
+
+  public static bool PlayerDeath;
 
   // Start is called before the first frame update
   void Start()
@@ -66,17 +71,19 @@ public class PlayerController : MonoBehaviour
     animator = GetComponent<Animator>();
     GameIsOver = false;
     Time.timeScale = 1f;
+    numberOfLives = 1f;
+    PlayerDeath = false;
   }
 
   // Update is called once per frame
   void Update()
   {
     //Death
-
-    if (rigidbody2D.position.y < -6)
+    if (rigidbody2D.position.y < -6 || numberOfLives == 0)
     {
       Destroy(this.gameObject);
       GameIsOver = true;
+      PlayerDeath = true;
     }
 
     //Check for Ground, needed for jumping
@@ -258,6 +265,7 @@ public class PlayerController : MonoBehaviour
       //animator.SetTrigger("Blocking");
     }
 
+    
   }
 
   public void TakeDamage(float damage, float enemyPositionX, float enemyPositionY)
@@ -270,6 +278,7 @@ public class PlayerController : MonoBehaviour
     knockbackMultiplier += damage;
     knockedTime = startKnockedTime;
 
+    updateHealthbar();
     //Debug.Log(rigidbody2D.position.x - enemyPositionX);
     //Debug.Log(rigidbody2D.position.y - enemyPositionY);
 
@@ -281,4 +290,20 @@ public class PlayerController : MonoBehaviour
     Gizmos.color = Color.red;
     Gizmos.DrawWireSphere(meleeAttackPosition.position, meleeAttackRange);
   }
+
+  
+  public void updateHealthbar()
+  {
+    if (numberOfLives - 0.1f <= 0)
+    {
+      numberOfLives = 0;
+      PlayerDeath = true;
+    }
+      
+    else
+      numberOfLives -= 0.1f;
+
+    currentHealthBar.rectTransform.localScale = new Vector3(numberOfLives, 1, 1);
+  }
 }
+
