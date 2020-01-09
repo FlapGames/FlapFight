@@ -15,7 +15,7 @@ public class MapMenu : MonoBehaviour
 
   public void PlayMap2()
   {
-    SceneManager.LoadScene("Forest Arena");
+    SceneManager.LoadScene("Landside");
   }
 
   public void PlayMap3()
@@ -25,7 +25,7 @@ public class MapMenu : MonoBehaviour
 
   public void PlayMap4()
   {
-    SceneManager.LoadScene("MountainsMP");
+    SceneManager.LoadScene("Mountains");
   }
 
   public void TimeMode()

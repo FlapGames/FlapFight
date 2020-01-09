@@ -454,36 +454,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 81080946}
   m_CullTransparentMesh: 0
---- !u!1 &111750989
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 111750990}
-  m_Layer: 5
-  m_Name: Item
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &111750990
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 111750989}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -50, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 864858032}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &141211502
 GameObject:
   m_ObjectHideFlags: 0
@@ -789,8 +759,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02e93c7cb6c38a0409e0844cb7809783, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mapMenu: {fileID: 0}
-  mainMenu: {fileID: 0}
 --- !u!1 &178145463
 GameObject:
   m_ObjectHideFlags: 0
@@ -1241,7 +1209,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &245696810
 GameObject:
@@ -2297,7 +2265,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 864858032}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -13746,6 +13714,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player1
       objectReference: {fileID: 0}
+    - target: {fileID: 7879551318808666075, guid: 6ee6f786b6f114c45a720f1fa045d4ad,
+        type: 3}
+      propertyPath: currentItem
+      value: 
+      objectReference: {fileID: 919516740}
+    - target: {fileID: 7879551318808666075, guid: 6ee6f786b6f114c45a720f1fa045d4ad,
+        type: 3}
+      propertyPath: currentHealthBar
+      value: 
+      objectReference: {fileID: 846729582}
+    - target: {fileID: 7879551318808666075, guid: 6ee6f786b6f114c45a720f1fa045d4ad,
+        type: 3}
+      propertyPath: FireballSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 62bdb76bbddec334c8166cd52d33833b,
+        type: 3}
+    - target: {fileID: 7879551318808666075, guid: 6ee6f786b6f114c45a720f1fa045d4ad,
+        type: 3}
+      propertyPath: FreezeSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: a54385f7d5bd28a45a081bad72efd8f0,
+        type: 3}
+    - target: {fileID: 7879551318808666075, guid: 6ee6f786b6f114c45a720f1fa045d4ad,
+        type: 3}
+      propertyPath: GrenadeSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 4befd69ba532c96479a3cbf0c3feb9ad,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6ee6f786b6f114c45a720f1fa045d4ad, type: 3}
 --- !u!1 &846729580
@@ -13851,7 +13847,6 @@ RectTransform:
   m_Children:
   - {fileID: 2092496908}
   - {fileID: 336304475}
-  - {fileID: 111750990}
   - {fileID: 610693362}
   m_Father: {fileID: 81080947}
   m_RootOrder: 1
@@ -13912,6 +13907,10 @@ MonoBehaviour:
     m_Bits: 0
   PlayerIsDeath: 0
   currentHealthBar: {fileID: 1128775549}
+  currentItem: {fileID: 0}
+  FireballSprite: {fileID: 0}
+  FreezeSprite: {fileID: 0}
+  GrenadeSprite: {fileID: 0}
   numberOfLives: 0
 --- !u!1001 &917209569
 PrefabInstance:
@@ -13980,6 +13979,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player2
       objectReference: {fileID: 0}
+    - target: {fileID: 1601065962440705815, guid: dd491e8ea2c16744e91aa6eab252b628,
+        type: 3}
+      propertyPath: currentItem
+      value: 
+      objectReference: {fileID: 610693363}
+    - target: {fileID: 1601065962440705815, guid: dd491e8ea2c16744e91aa6eab252b628,
+        type: 3}
+      propertyPath: currentHealthBar
+      value: 
+      objectReference: {fileID: 1128775549}
+    - target: {fileID: 1601065962440705815, guid: dd491e8ea2c16744e91aa6eab252b628,
+        type: 3}
+      propertyPath: GrenadeSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 4befd69ba532c96479a3cbf0c3feb9ad,
+        type: 3}
+    - target: {fileID: 1601065962440705815, guid: dd491e8ea2c16744e91aa6eab252b628,
+        type: 3}
+      propertyPath: FreezeSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: a54385f7d5bd28a45a081bad72efd8f0,
+        type: 3}
+    - target: {fileID: 1601065962440705815, guid: dd491e8ea2c16744e91aa6eab252b628,
+        type: 3}
+      propertyPath: FireballSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 62bdb76bbddec334c8166cd52d33833b,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dd491e8ea2c16744e91aa6eab252b628, type: 3}
 --- !u!1 &918927891
@@ -14942,7 +14969,7 @@ Transform:
   - {fileID: 1761456883}
   - {fileID: 665298794}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1358752573
 GameObject:
@@ -15118,7 +15145,7 @@ PrefabInstance:
     - target: {fileID: 9072784680532757669, guid: 24cb65c8ee906444caca75ef489c3383,
         type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 9072784680532757669, guid: 24cb65c8ee906444caca75ef489c3383,
         type: 3}
@@ -15610,6 +15637,10 @@ MonoBehaviour:
     m_Bits: 0
   PlayerIsDeath: 0
   currentHealthBar: {fileID: 846729582}
+  currentItem: {fileID: 0}
+  FireballSprite: {fileID: 0}
+  FreezeSprite: {fileID: 0}
+  GrenadeSprite: {fileID: 0}
   numberOfLives: 0
 --- !u!1001 &1612419727
 PrefabInstance:
@@ -28560,8 +28591,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02e93c7cb6c38a0409e0844cb7809783, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mapMenu: {fileID: 0}
-  mainMenu: {fileID: 0}
 --- !u!114 &2026646323
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28656,7 +28685,7 @@ RectTransform:
   - {fileID: 81080947}
   - {fileID: 2045153083}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}

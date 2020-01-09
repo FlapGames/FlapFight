@@ -1548,7 +1548,6 @@ RectTransform:
   m_Children:
   - {fileID: 1574533911}
   - {fileID: 1931879858}
-  - {fileID: 970669326}
   - {fileID: 1245117404}
   m_Father: {fileID: 316992736}
   m_RootOrder: 1
@@ -1913,6 +1912,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player1
       objectReference: {fileID: 0}
+    - target: {fileID: 7879551318808666075, guid: 6ee6f786b6f114c45a720f1fa045d4ad,
+        type: 3}
+      propertyPath: currentHealthBar
+      value: 
+      objectReference: {fileID: 995511158}
+    - target: {fileID: 7879551318808666075, guid: 6ee6f786b6f114c45a720f1fa045d4ad,
+        type: 3}
+      propertyPath: currentItem
+      value: 
+      objectReference: {fileID: 889055565}
+    - target: {fileID: 7879551318808666075, guid: 6ee6f786b6f114c45a720f1fa045d4ad,
+        type: 3}
+      propertyPath: GrenadeSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 4befd69ba532c96479a3cbf0c3feb9ad,
+        type: 3}
+    - target: {fileID: 7879551318808666075, guid: 6ee6f786b6f114c45a720f1fa045d4ad,
+        type: 3}
+      propertyPath: FreezeSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: a54385f7d5bd28a45a081bad72efd8f0,
+        type: 3}
+    - target: {fileID: 7879551318808666075, guid: 6ee6f786b6f114c45a720f1fa045d4ad,
+        type: 3}
+      propertyPath: FireballSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 62bdb76bbddec334c8166cd52d33833b,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6ee6f786b6f114c45a720f1fa045d4ad, type: 3}
 --- !u!1 &712704381
@@ -2570,36 +2597,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 898617326}
   m_CullTransparentMesh: 0
---- !u!1 &970669325
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 970669326}
-  m_Layer: 5
-  m_Name: Item
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &970669326
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 970669325}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -50, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 521771092}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &995511156
 GameObject:
   m_ObjectHideFlags: 0
@@ -10652,7 +10649,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 521771092}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -11018,6 +11015,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player2
       objectReference: {fileID: 0}
+    - target: {fileID: 1601065962440705815, guid: dd491e8ea2c16744e91aa6eab252b628,
+        type: 3}
+      propertyPath: currentHealthBar
+      value: 
+      objectReference: {fileID: 1336656309}
+    - target: {fileID: 1601065962440705815, guid: dd491e8ea2c16744e91aa6eab252b628,
+        type: 3}
+      propertyPath: currentItem
+      value: 
+      objectReference: {fileID: 1245117405}
+    - target: {fileID: 1601065962440705815, guid: dd491e8ea2c16744e91aa6eab252b628,
+        type: 3}
+      propertyPath: FreezeSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: a54385f7d5bd28a45a081bad72efd8f0,
+        type: 3}
+    - target: {fileID: 1601065962440705815, guid: dd491e8ea2c16744e91aa6eab252b628,
+        type: 3}
+      propertyPath: FireballSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 62bdb76bbddec334c8166cd52d33833b,
+        type: 3}
+    - target: {fileID: 1601065962440705815, guid: dd491e8ea2c16744e91aa6eab252b628,
+        type: 3}
+      propertyPath: GrenadeSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 4befd69ba532c96479a3cbf0c3feb9ad,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dd491e8ea2c16744e91aa6eab252b628, type: 3}
 --- !u!1 &1529670635
