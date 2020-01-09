@@ -1244,9 +1244,9 @@ MonoBehaviour:
   meleeAttackPosition: {fileID: 982225554}
   meleeAttackRange: 0.58
   meleeDamage: 2
-  Fireball: {fileID: 6578768773885820896, guid: 9b6c7cf4111c5984694be1f65dd6b9a2,
+  Fireball: {fileID: 6578768773885820896, guid: b15c6ce30b1a72e458cc87d28c536166,
     type: 3}
-  Grenade: {fileID: 6578768773885820896, guid: e92e944f79766c9439d00adeda5475d9, type: 3}
+  Grenade: {fileID: 6578768773885820896, guid: 9b6c7cf4111c5984694be1f65dd6b9a2, type: 3}
   Hourglass: {fileID: 6578768773885820896, guid: a70b250296c5df542b18acddd5ed5f29,
     type: 3}
   currentItemID: 0

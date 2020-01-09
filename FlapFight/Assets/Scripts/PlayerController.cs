@@ -90,7 +90,7 @@ public class PlayerController : MonoBehaviour
     {
       PlayerIsDeath = true;
       GameIsOver = true;
-      Destroy(this.gameObject);
+      this.gameObject.SetActive(false);
     }
 
     //Check for Ground, needed for jumping

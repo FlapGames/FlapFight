@@ -6,7 +6,7 @@ public class Projectile : MonoBehaviour
 {
     public float projectileSpeed;
 
-    private Rigidbody2D rigidbody2D;
+    protected Rigidbody2D rigidbody2D;
 
     public GameObject ProjectileExplosion;
 
