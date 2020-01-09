@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - PlatformMV
   layers:
   - Default
   - TransparentFX
@@ -38,9 +39,18 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background1
+    uniqueID: 39922193
+    locked: 0
+  - name: Background2
+    uniqueID: 1474832637
+    locked: 0
+  - name: background3
+    uniqueID: 585710571
+    locked: 0
+  - name: Misc
+    uniqueID: 2288128755
+    locked: 0
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: New Layer
-    uniqueID: 2288128755
     locked: 0
