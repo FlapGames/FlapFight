@@ -13805,6 +13805,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 849311263}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &849311265 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3715266048260814401, guid: c4d818284e6f7c1499e1423d014b6f98,
+    type: 3}
+  m_PrefabInstance: {fileID: 849311263}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &864858031
 GameObject:
   m_ObjectHideFlags: 0
@@ -15327,6 +15333,12 @@ PrefabInstance:
 --- !u!4 &1477114604 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1609262038750110621, guid: 0007aa3e1e8fb8a4ca6f915ec0c09d7e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1477114603}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1477114605 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1609262038750110608, guid: 0007aa3e1e8fb8a4ca6f915ec0c09d7e,
     type: 3}
   m_PrefabInstance: {fileID: 1477114603}
   m_PrefabAsset: {fileID: 0}
@@ -28579,8 +28591,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bffac913d5f4be45a3a820303577c08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player1: {fileID: 0}
-  Player2: {fileID: 0}
+  Player1: {fileID: 1477114605}
+  Player2: {fileID: 849311265}
   Winner: {fileID: 1003171343}
   pauseMenuUI: {fileID: 178145463}
   restartMenuUI: {fileID: 735601207}
