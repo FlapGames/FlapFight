@@ -77,6 +77,7 @@ public class PlayerController : MonoBehaviour
   public Sprite GrenadeSprite;
 
   public float numberOfLives;
+  float damage = 0.1f;
 
   // Start is called before the first frame update
   void Start()
@@ -213,6 +214,7 @@ public class PlayerController : MonoBehaviour
 
     if(currentItemID != 0)
     {
+      
 
       if(Input.GetKeyDown(useItem))
       {
@@ -360,14 +362,14 @@ public class PlayerController : MonoBehaviour
   
   public void updateHealthbar()
   {
-    if (numberOfLives - 0.1f <= 0)
+    if (numberOfLives - damage <= 0)
     {
       numberOfLives = 0;
       PlayerIsDeath = true;
       GameIsOver = true;
     }
     else
-      numberOfLives -= 0.1f;
+      numberOfLives -= damage;
 
     currentHealthBar.rectTransform.localScale = new Vector3(numberOfLives, 1, 1);
   }

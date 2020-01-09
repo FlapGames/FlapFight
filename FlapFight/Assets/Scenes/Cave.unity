@@ -411,6 +411,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 66185719}
   m_CullTransparentMesh: 0
+--- !u!1 &74325541 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3715266048260814401, guid: c4d818284e6f7c1499e1423d014b6f98,
+    type: 3}
+  m_PrefabInstance: {fileID: 532296002}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &97333381
 GameObject:
   m_ObjectHideFlags: 0
@@ -1949,6 +1955,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player2
       objectReference: {fileID: 0}
+    - target: {fileID: 3715266048260814403, guid: c4d818284e6f7c1499e1423d014b6f98,
+        type: 3}
+      propertyPath: currentItem
+      value: 
+      objectReference: {fileID: 654572777}
+    - target: {fileID: 3715266048260814403, guid: c4d818284e6f7c1499e1423d014b6f98,
+        type: 3}
+      propertyPath: currentHealthBar
+      value: 
+      objectReference: {fileID: 719985344}
     - target: {fileID: 3715266048260814407, guid: c4d818284e6f7c1499e1423d014b6f98,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -59119,8 +59135,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bffac913d5f4be45a3a820303577c08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player1: {fileID: 0}
-  Player2: {fileID: 0}
+  Player1: {fileID: 1814800733}
+  Player2: {fileID: 74325541}
   Winner: {fileID: 804404601}
   pauseMenuUI: {fileID: 179578832}
   restartMenuUI: {fileID: 1123142849}
@@ -59293,6 +59309,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player1
       objectReference: {fileID: 0}
+    - target: {fileID: 1609262038750110609, guid: 0007aa3e1e8fb8a4ca6f915ec0c09d7e,
+        type: 3}
+      propertyPath: currentItem
+      value: 
+      objectReference: {fileID: 1720263191}
+    - target: {fileID: 1609262038750110609, guid: 0007aa3e1e8fb8a4ca6f915ec0c09d7e,
+        type: 3}
+      propertyPath: currentHealthBar
+      value: 
+      objectReference: {fileID: 2029625451}
     - target: {fileID: 1609262038750110621, guid: 0007aa3e1e8fb8a4ca6f915ec0c09d7e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -59350,6 +59376,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0007aa3e1e8fb8a4ca6f915ec0c09d7e, type: 3}
+--- !u!1 &1814800733 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1609262038750110608, guid: 0007aa3e1e8fb8a4ca6f915ec0c09d7e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1798121339}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1815705028
 GameObject:
   m_ObjectHideFlags: 0

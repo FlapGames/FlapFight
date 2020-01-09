@@ -949,6 +949,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player2
       objectReference: {fileID: 0}
+    - target: {fileID: 3715266048260814403, guid: c4d818284e6f7c1499e1423d014b6f98,
+        type: 3}
+      propertyPath: currentHealthBar
+      value: 
+      objectReference: {fileID: 1336656309}
+    - target: {fileID: 3715266048260814403, guid: c4d818284e6f7c1499e1423d014b6f98,
+        type: 3}
+      propertyPath: currentItem
+      value: 
+      objectReference: {fileID: 1245117405}
     - target: {fileID: 3715266048260814407, guid: c4d818284e6f7c1499e1423d014b6f98,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1220,8 +1230,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bffac913d5f4be45a3a820303577c08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player1: {fileID: 0}
-  Player2: {fileID: 0}
+  Player1: {fileID: 418346123}
+  Player2: {fileID: 581548993}
   Winner: {fileID: 587534064}
   pauseMenuUI: {fileID: 1148029854}
   restartMenuUI: {fileID: 1867705644}
@@ -1464,6 +1474,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 327906472}
   m_CullTransparentMesh: 0
+--- !u!1 &418346123 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1609262038750110608, guid: 0007aa3e1e8fb8a4ca6f915ec0c09d7e,
+    type: 3}
+  m_PrefabInstance: {fileID: 583787529}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &454459417
 GameObject:
   m_ObjectHideFlags: 0
@@ -1843,6 +1859,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 559491757}
   m_CullTransparentMesh: 0
+--- !u!1 &581548993 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3715266048260814401, guid: c4d818284e6f7c1499e1423d014b6f98,
+    type: 3}
+  m_PrefabInstance: {fileID: 316913388}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &583787529
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1855,6 +1877,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player1
       objectReference: {fileID: 0}
+    - target: {fileID: 1609262038750110609, guid: 0007aa3e1e8fb8a4ca6f915ec0c09d7e,
+        type: 3}
+      propertyPath: currentItem
+      value: 
+      objectReference: {fileID: 889055565}
+    - target: {fileID: 1609262038750110609, guid: 0007aa3e1e8fb8a4ca6f915ec0c09d7e,
+        type: 3}
+      propertyPath: currentHealthBar
+      value: 
+      objectReference: {fileID: 995511158}
     - target: {fileID: 1609262038750110621, guid: 0007aa3e1e8fb8a4ca6f915ec0c09d7e,
         type: 3}
       propertyPath: m_LocalPosition.x
