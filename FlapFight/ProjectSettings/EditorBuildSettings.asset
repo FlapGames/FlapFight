@@ -14,4 +14,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 17d8f41e56feffa44a6720b1f28bd758
+  - enabled: 1
+    path: Assets/Scenes/ForestArena.unity
+    guid: 3e7064de927670e43a1d7628eb7de5c5
+  - enabled: 1
+    path: Assets/Scenes/Cave.unity
+    guid: d20c434a32c71d349b23092faa90326f
+  - enabled: 1
+    path: Assets/Scenes/MountainsMP.unity
+    guid: 928ae9b3ce9c930499460b04b824aabb
   m_configObjects: {}

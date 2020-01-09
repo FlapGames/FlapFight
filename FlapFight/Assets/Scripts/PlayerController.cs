@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -29,6 +30,7 @@ public class PlayerController : MonoBehaviour
   public KeyCode attackRanged;
   public KeyCode attackMelee;
   public KeyCode block;
+  public KeyCode useItem;
 
   private Rigidbody2D rigidbody2D;
 
@@ -53,11 +55,21 @@ public class PlayerController : MonoBehaviour
   public float meleeAttackRange;
   public float meleeDamage;
 
+  public GameObject Fireball;
+  public GameObject Grenade;
+  public GameObject Hourglass;
+
+  public int currentItemID = 0;
+
   public LayerMask enemies;
 
   public static bool GameIsOver;
 
+  public bool PlayerIsDeath;
 
+  public Image currentHealthBar;
+
+  public float numberOfLives;
 
   // Start is called before the first frame update
   void Start()
@@ -66,17 +78,19 @@ public class PlayerController : MonoBehaviour
     animator = GetComponent<Animator>();
     GameIsOver = false;
     Time.timeScale = 1f;
+    numberOfLives = 1f;
+    PlayerIsDeath = false;
   }
 
   // Update is called once per frame
   void Update()
   {
     //Death
-
-    if (rigidbody2D.position.y < -6)
+    if (rigidbody2D.position.y < -6 || numberOfLives == 0)
     {
-      Destroy(this.gameObject);
+      PlayerIsDeath = true;
       GameIsOver = true;
+      Destroy(this.gameObject);
     }
 
     //Check for Ground, needed for jumping
@@ -190,6 +204,30 @@ public class PlayerController : MonoBehaviour
       timeBetweenMeleeAttack -= Time.deltaTime;
     }
 
+    if(currentItemID != 0)
+    {
+      if(Input.GetKeyDown(useItem))
+      {
+        GameObject tempItem;
+        if (currentItemID == 1)
+        {
+          tempItem = Fireball;
+        }
+        else if (currentItemID == 2)
+        {
+          tempItem = Grenade;
+        }
+        else
+        {
+          tempItem = Hourglass;
+        }
+        GameObject projectileClone = (GameObject)Instantiate(tempItem, throwPoint.position, throwPoint.rotation);
+        //Destroy(projectileClone, 0.5f);
+        projectileClone.transform.localScale = transform.localScale;
+        currentItemID = 0;
+      }
+    }
+
     //Blocking    
 
     if (Input.GetKey(block) && shieldDurability > 15)
@@ -258,6 +296,7 @@ public class PlayerController : MonoBehaviour
       animator.SetTrigger("Blocking");
     }
 
+    
   }
 
   public void TakeDamage(float damage, float enemyPositionX, float enemyPositionY)
@@ -270,6 +309,7 @@ public class PlayerController : MonoBehaviour
     knockbackMultiplier += damage;
     knockedTime = startKnockedTime;
 
+    updateHealthbar();
     //Debug.Log(rigidbody2D.position.x - enemyPositionX);
     //Debug.Log(rigidbody2D.position.y - enemyPositionY);
 
@@ -278,7 +318,7 @@ public class PlayerController : MonoBehaviour
 
   public void PickUpItem(int itemID)
   {
-
+    currentItemID = itemID;
   }
 
   public void OnDrawGizmosSelected()
@@ -286,4 +326,21 @@ public class PlayerController : MonoBehaviour
     Gizmos.color = Color.red;
     Gizmos.DrawWireSphere(meleeAttackPosition.position, meleeAttackRange);
   }
+
+  
+  public void updateHealthbar()
+  {
+    if (numberOfLives - 0.1f <= 0)
+    {
+      numberOfLives = 0;
+      PlayerIsDeath = true;
+      GameIsOver = true;
+    }
+      
+    else
+      numberOfLives -= 0.1f;
+
+    currentHealthBar.rectTransform.localScale = new Vector3(numberOfLives, 1, 1);
+  }
 }
+
