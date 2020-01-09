@@ -212,13 +212,12 @@ MonoBehaviour:
     type: 3}
   throwPoint: {fileID: 7879551318488928256}
   meleeAttackPosition: {fileID: 7879551319303631902}
-  meleeAttackRange: 0.58
+  meleeAttackRange: 1
   meleeDamage: 2
   Fireball: {fileID: 6578768773885820896, guid: b15c6ce30b1a72e458cc87d28c536166,
     type: 3}
   Grenade: {fileID: 6578768773885820896, guid: 9b6c7cf4111c5984694be1f65dd6b9a2, type: 3}
-  Hourglass: {fileID: 6578768773885820896, guid: a70b250296c5df542b18acddd5ed5f29,
-    type: 3}
+  Hourglass: {fileID: 0}
   currentItemID: 0
   enemies:
     serializedVersion: 2
