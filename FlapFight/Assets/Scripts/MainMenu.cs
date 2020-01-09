@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class MainMenu : MonoBehaviour
 {
-  public GameObject mapMenu;
-  public GameObject mainMenu;
   public void QuitGame()
   {
     Application.Quit();
@@ -16,9 +14,4 @@ public class MainMenu : MonoBehaviour
     Debug.Log(volume);
   }
 
-  public void SwitchToMapMenu()
-  {
-    mainMenu.SetActive(false);
-    mapMenu.SetActive(true);
-  }
 }

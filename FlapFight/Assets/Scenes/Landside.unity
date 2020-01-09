@@ -1133,8 +1133,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02e93c7cb6c38a0409e0844cb7809783, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mapMenu: {fileID: 0}
-  mainMenu: {fileID: 0}
 --- !u!114 &327699972
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1611,6 +1609,10 @@ MonoBehaviour:
     m_Bits: 0
   PlayerIsDeath: 0
   currentHealthBar: {fileID: 1336656309}
+  currentItem: {fileID: 0}
+  FireballSprite: {fileID: 0}
+  FreezeSprite: {fileID: 0}
+  GrenadeSprite: {fileID: 0}
   numberOfLives: 0
 --- !u!1 &559491757
 GameObject:
@@ -10883,8 +10885,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02e93c7cb6c38a0409e0844cb7809783, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mapMenu: {fileID: 0}
-  mainMenu: {fileID: 0}
 --- !u!1 &1487202756
 GameObject:
   m_ObjectHideFlags: 0
@@ -10949,7 +10949,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1488407137
 PrefabInstance:
@@ -10996,7 +10996,7 @@ PrefabInstance:
     - target: {fileID: 1601065962440705811, guid: dd491e8ea2c16744e91aa6eab252b628,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1601065962440705811, guid: dd491e8ea2c16744e91aa6eab252b628,
         type: 3}
@@ -11966,7 +11966,7 @@ Transform:
   - {fileID: 1035092870}
   - {fileID: 1216149178}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1759881087
 GameObject:
@@ -12337,7 +12337,7 @@ PrefabInstance:
     - target: {fileID: 9072784680532757669, guid: 24cb65c8ee906444caca75ef489c3383,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 9072784680532757669, guid: 24cb65c8ee906444caca75ef489c3383,
         type: 3}
@@ -12942,6 +12942,10 @@ MonoBehaviour:
     m_Bits: 0
   PlayerIsDeath: 0
   currentHealthBar: {fileID: 995511158}
+  currentItem: {fileID: 0}
+  FireballSprite: {fileID: 0}
+  FreezeSprite: {fileID: 0}
+  GrenadeSprite: {fileID: 0}
   numberOfLives: 0
 --- !u!1 &1980476329
 GameObject:
@@ -13078,5 +13082,5 @@ Transform:
   - {fileID: 1796942977}
   - {fileID: 1586803122}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
