@@ -8160,6 +8160,11 @@ PrefabInstance:
       propertyPath: currentItem
       value: 
       objectReference: {fileID: 1846190847}
+    - target: {fileID: 6723755351441102357, guid: 05704e702547db34c8e4a440fd546145,
+        type: 3}
+      propertyPath: startKnockedTime
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 6723755351441102361, guid: 05704e702547db34c8e4a440fd546145,
         type: 3}
       propertyPath: m_LocalPosition.x
