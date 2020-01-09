@@ -343,4 +343,3 @@ public class PlayerController : MonoBehaviour
     currentHealthBar.rectTransform.localScale = new Vector3(numberOfLives, 1, 1);
   }
 }
-

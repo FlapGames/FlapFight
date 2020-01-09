@@ -20,7 +20,6 @@ public class ItemPickup : MonoBehaviour
   public void OnTriggerEnter2D(Collider2D collision)
   {
     PlayerController player = collision.GetComponent<PlayerController>();
-    Debug.Log("trigger");
     if (player != null)
     {
       player.PickUpItem(itemID);
@@ -44,8 +43,6 @@ public class ItemPickup : MonoBehaviour
   // Update is called once per frame
   void Update()
   {
-
-    //Debug.Log(currentTimeInvisible);
     if (invisible)
     {
       spriteRenderer.enabled = false;
@@ -64,7 +61,8 @@ public class ItemPickup : MonoBehaviour
 
   void SetRandomItem()
   {
-    itemID = (int)Random.Range(1f, 4f);
+    itemID = 2;
+    //itemID = (int)Random.Range(1f, 4f);
   }
 
   void UpdateSprite()
