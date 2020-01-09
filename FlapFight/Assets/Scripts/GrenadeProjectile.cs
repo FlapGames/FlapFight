@@ -4,10 +4,65 @@ using UnityEngine;
 
 public class GrenadeProjectile : Projectile
 {
+
+  bool bounceUp = false;
+  float timeSinceSwap = 0;
+
+  float timeUntilExplosion;
+
+  void Start()
+  {
+    rigidbody2D = GetComponent<Rigidbody2D>();
+    projectileSpeed = 8f;
+    timeUntilExplosion = 1.2f;
+  }
+
+  void Update()
+  {
+    if (bounceUp)
+    {
+      rigidbody2D.velocity = new Vector2(projectileSpeed * transform.localScale.x, Mathf.Pow((timeSinceSwap * 3 + 1), 2) * 1f);
+    }
+    else
+    {
+      rigidbody2D.velocity = new Vector2(projectileSpeed * transform.localScale.x, Mathf.Pow((timeSinceSwap * 3 + 1), 2) * -1.3f);
+    }
+
+
+
+    timeSinceSwap += Time.deltaTime;
+    if (timeSinceSwap >= 0.4f && bounceUp == true)
+    {
+      bounceUp = !bounceUp;
+      timeSinceSwap = 0;
+    }
+
+    timeUntilExplosion -= Time.deltaTime;
+    if (timeUntilExplosion <= 0f)
+    {
+      SpawnExplosion();
+    }
+  }
+
+  private void OnCollisionEnter2D(Collision2D collision)
+  {
+    bounceUp = !bounceUp;
+    timeSinceSwap = 0f;
+
+  }
   private void OnTriggerEnter2D(Collider2D other)
   {
+    if (other.transform.CompareTag("Player1") || other.transform.CompareTag("Player2"))
+    {
+      //other.GetComponent<PlayerController>().TakeDamage(0.2f, rigidbody2D.position.x, rigidbody2D.position.y);
+      SpawnExplosion();
+    }
+
+  }
+
+  private void SpawnExplosion()
+  {
     Destroy(gameObject);
-    //other.GetComponent<PlayerController>().TakeDamage(0.1f, rigidbody2D.position.x, rigidbody2D.position.y);
-    Destroy(Instantiate(ProjectileExplosion, transform.position, transform.rotation), 2.5f);
+    Destroy(Instantiate(ProjectileExplosion, transform.position, transform.rotation), 0.3f);
   }
 }
