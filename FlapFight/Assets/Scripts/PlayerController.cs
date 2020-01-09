@@ -30,6 +30,7 @@ public class PlayerController : MonoBehaviour
   public KeyCode attackRanged;
   public KeyCode attackMelee;
   public KeyCode block;
+  public KeyCode useItem;
 
   private Rigidbody2D rigidbody2D;
 
@@ -53,6 +54,12 @@ public class PlayerController : MonoBehaviour
 
   public float meleeAttackRange;
   public float meleeDamage;
+
+  public GameObject Fireball;
+  public GameObject Grenade;
+  public GameObject Hourglass;
+
+  public int currentItemID = 0;
 
   public LayerMask enemies;
 
@@ -197,6 +204,30 @@ public class PlayerController : MonoBehaviour
       timeBetweenMeleeAttack -= Time.deltaTime;
     }
 
+    if(currentItemID != 0)
+    {
+      if(Input.GetKeyDown(useItem))
+      {
+        GameObject tempItem;
+        if (currentItemID == 1)
+        {
+          tempItem = Fireball;
+        }
+        else if (currentItemID == 2)
+        {
+          tempItem = Grenade;
+        }
+        else
+        {
+          tempItem = Hourglass;
+        }
+        GameObject projectileClone = (GameObject)Instantiate(tempItem, throwPoint.position, throwPoint.rotation);
+        //Destroy(projectileClone, 0.5f);
+        projectileClone.transform.localScale = transform.localScale;
+        currentItemID = 0;
+      }
+    }
+
     //Blocking    
 
     if (Input.GetKey(block) && shieldDurability > 15)
@@ -287,7 +318,7 @@ public class PlayerController : MonoBehaviour
 
   public void PickUpItem(int itemID)
   {
-
+    currentItemID = itemID;
   }
 
   public void OnDrawGizmosSelected()

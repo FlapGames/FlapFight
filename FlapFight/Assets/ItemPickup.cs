@@ -5,6 +5,11 @@ using UnityEngine;
 public class ItemPickup : MonoBehaviour
 {
   public int itemID = 0;
+
+  public Sprite FireballSprite;
+  public Sprite FreezeSprite;
+  public Sprite GrenadeSprite;
+
   SpriteRenderer spriteRenderer;
   BoxCollider2D boxCollider;
 
@@ -32,6 +37,8 @@ public class ItemPickup : MonoBehaviour
     boxCollider = gameObject.GetComponent<BoxCollider2D>();
     spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
     SetRandomItem();
+    UpdateSprite();
+
   }
 
   // Update is called once per frame
@@ -46,16 +53,33 @@ public class ItemPickup : MonoBehaviour
       currentTimeInvisible -= Time.deltaTime;
       if (currentTimeInvisible <= 0)
       {
+        SetRandomItem();
+        UpdateSprite();
         invisible = false;
         spriteRenderer.enabled = true;
         boxCollider.enabled = true;
-        SetRandomItem();
       }
     }
   }
 
   void SetRandomItem()
   {
-    itemID = (int)Random.Range(0f, 3f);
+    itemID = (int)Random.Range(1f, 4f);
+  }
+
+  void UpdateSprite()
+  {
+    if(itemID == 1)
+    {
+      spriteRenderer.sprite = FireballSprite;
+    }
+    else if (itemID == 2)
+    {
+      spriteRenderer.sprite = GrenadeSprite;
+    }
+    else if (itemID == 3)
+    {
+      spriteRenderer.sprite = FreezeSprite;
+    }
   }
 }
