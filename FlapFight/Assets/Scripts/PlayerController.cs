@@ -90,7 +90,7 @@ public class PlayerController : MonoBehaviour
     {
       PlayerIsDeath = true;
       GameIsOver = true;
-      Destroy(this.gameObject);
+      this.gameObject.SetActive(false);
     }
 
     //Check for Ground, needed for jumping
@@ -204,26 +204,26 @@ public class PlayerController : MonoBehaviour
       timeBetweenMeleeAttack -= Time.deltaTime;
     }
 
+    //Attack Special
+
     if(currentItemID != 0)
     {
       if(Input.GetKeyDown(useItem))
       {
-        GameObject tempItem;
         if (currentItemID == 1)
         {
-          tempItem = Fireball;
+          GameObject projectileClone = (GameObject)Instantiate(Fireball, throwPoint.position, throwPoint.rotation);
+          projectileClone.transform.localScale = transform.localScale;
         }
         else if (currentItemID == 2)
         {
-          tempItem = Grenade;
+          GameObject projectileClone = (GameObject)Instantiate(Grenade, throwPoint.position, throwPoint.rotation);
+          projectileClone.transform.localScale = transform.localScale;
         }
         else
         {
-          tempItem = Hourglass;
+          //tempItem = Hourglass;
         }
-        GameObject projectileClone = (GameObject)Instantiate(tempItem, throwPoint.position, throwPoint.rotation);
-        //Destroy(projectileClone, 0.5f);
-        projectileClone.transform.localScale = transform.localScale;
         currentItemID = 0;
       }
     }
@@ -343,4 +343,3 @@ public class PlayerController : MonoBehaviour
     currentHealthBar.rectTransform.localScale = new Vector3(numberOfLives, 1, 1);
   }
 }
-

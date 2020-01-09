@@ -81,7 +81,7 @@ public class PauseMenu : MonoBehaviour
     {
       Winner.text = "PLAYER 2";
     }
-    else if (Player2.GetComponent<PlayerController>().PlayerIsDeath || Player2.GetComponent<PlayerController>().numberOfLives > Player1.GetComponent<PlayerController>().numberOfLives)
+    else if (Player2.GetComponent<PlayerController>().PlayerIsDeath || Player2.GetComponent<PlayerController>().numberOfLives < Player1.GetComponent<PlayerController>().numberOfLives)
     {
       Winner.text = "PLAYER 1";
     }
