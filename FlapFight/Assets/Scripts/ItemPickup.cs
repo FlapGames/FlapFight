@@ -61,8 +61,7 @@ public class ItemPickup : MonoBehaviour
 
   void SetRandomItem()
   {
-    itemID = 2;
-    //itemID = (int)Random.Range(1f, 4f);
+    itemID = (int)Random.Range(1f, 4f);
   }
 
   void UpdateSprite()
