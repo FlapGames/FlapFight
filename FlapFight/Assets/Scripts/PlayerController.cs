@@ -240,9 +240,9 @@ public class PlayerController : MonoBehaviour
           }
         }
         currentItemID = 0;
-        UpdateItemUI();
       }
     }
+    UpdateItemUI();
 
     //Blocking    
 
