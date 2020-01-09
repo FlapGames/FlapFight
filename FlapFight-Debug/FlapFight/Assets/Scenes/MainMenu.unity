@@ -96,6 +96,7 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
+    m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
   m_UseShadowmask: 1
 --- !u!196 &4
@@ -2322,6 +2323,7 @@ GameObject:
   - component: {fileID: 1093487566}
   - component: {fileID: 1093487565}
   - component: {fileID: 1093487564}
+  - component: {fileID: 1093487568}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -2412,6 +2414,23 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1093487568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1093487563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bffac913d5f4be45a3a820303577c08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player1: {fileID: 0}
+  Player2: {fileID: 0}
+  Winner: {fileID: 0}
+  pauseMenuUI: {fileID: 0}
+  restartMenuUI: {fileID: 0}
 --- !u!1 &1181242094
 GameObject:
   m_ObjectHideFlags: 0
@@ -3737,7 +3756,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000012204, y: 0.0000061989}
+  m_AnchoredPosition: {x: 0.000012204, y: 0}
   m_SizeDelta: {x: 954.4, y: 468.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1747195397
@@ -3752,6 +3771,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02e93c7cb6c38a0409e0844cb7809783, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mapMenu: {fileID: 0}
+  mainMenu: {fileID: 0}
 --- !u!114 &1747195398
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3956,6 +3977,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02e93c7cb6c38a0409e0844cb7809783, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mapMenu: {fileID: 0}
+  mainMenu: {fileID: 0}
 --- !u!1 &1896279484
 GameObject:
   m_ObjectHideFlags: 0
@@ -4131,7 +4154,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000005722, y: -3.2}
+  m_AnchoredPosition: {x: -0, y: -3.2}
   m_SizeDelta: {x: 441.3, y: 487.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1975529427
@@ -4146,6 +4169,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02e93c7cb6c38a0409e0844cb7809783, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mapMenu: {fileID: 1747195395}
+  mainMenu: {fileID: 1975529425}
 --- !u!1 &2013138720
 GameObject:
   m_ObjectHideFlags: 0

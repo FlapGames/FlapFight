@@ -72,7 +72,7 @@ public class PauseMenu : MonoBehaviour
 
   public void Restart()
   {
-    SceneManager.LoadScene(1);
+    SceneManager.LoadScene(SceneManager.sceneCount);
   }
 
   void CalculateWinner()
