@@ -213,8 +213,8 @@ public class PlayerController : MonoBehaviour
 
     if(currentItemID != 0)
     {
-
-      if(Input.GetKeyDown(useItem))
+      
+      if (Input.GetKeyDown(useItem))
       {
         if (currentItemID == 1)
         {
@@ -238,9 +238,10 @@ public class PlayerController : MonoBehaviour
           }
         }
         currentItemID = 0;
-        UpdateItemUI();
+        
       }
     }
+    UpdateItemUI();
 
     //Blocking    
 

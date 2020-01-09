@@ -194,8 +194,8 @@ MonoBehaviour:
   left: 97
   right: 100
   jump: 119
-  attackRanged: 32
-  attackMelee: 102
+  attackRanged: 103
+  attackMelee: 32
   block: 9
   useItem: 114
   groundCheckPoint: {fileID: 1609262039256228412}
