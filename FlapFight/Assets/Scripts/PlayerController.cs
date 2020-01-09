@@ -213,7 +213,6 @@ public class PlayerController : MonoBehaviour
 
     if(currentItemID != 0)
     {
-      UpdateItemUI();
 
       if(Input.GetKeyDown(useItem))
       {

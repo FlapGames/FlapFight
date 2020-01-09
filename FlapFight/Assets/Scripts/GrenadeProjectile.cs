@@ -52,11 +52,10 @@ public class GrenadeProjectile : Projectile
   }
   private void OnTriggerEnter2D(Collider2D other)
   {
-    if (other.transform.CompareTag("Player1") || other.transform.CompareTag("Player2"))
-    {
+
       //other.GetComponent<PlayerController>().TakeDamage(0.2f, rigidbody2D.position.x, rigidbody2D.position.y);
       SpawnExplosion();
-    }
+
 
   }
 
