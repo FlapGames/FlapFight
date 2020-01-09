@@ -68,6 +68,11 @@ public class PlayerController : MonoBehaviour
   public bool PlayerIsDeath;
 
   public Image currentHealthBar;
+  public Image currentItem;
+
+  public Sprite FireballSprite;
+  public Sprite FreezeSprite;
+  public Sprite GrenadeSprite;
 
   public float numberOfLives;
 
@@ -90,7 +95,7 @@ public class PlayerController : MonoBehaviour
     {
       PlayerIsDeath = true;
       GameIsOver = true;
-      Destroy(this.gameObject);
+      this.gameObject.SetActive(false);
     }
 
     //Check for Ground, needed for jumping
@@ -206,7 +211,9 @@ public class PlayerController : MonoBehaviour
 
     if(currentItemID != 0)
     {
-      if(Input.GetKeyDown(useItem))
+      UpdateItemUI();
+
+      if (Input.GetKeyDown(useItem))
       {
         GameObject tempItem;
         if (currentItemID == 1)
@@ -225,6 +232,7 @@ public class PlayerController : MonoBehaviour
         //Destroy(projectileClone, 0.5f);
         projectileClone.transform.localScale = transform.localScale;
         currentItemID = 0;
+        UpdateItemUI();
       }
     }
 
@@ -336,11 +344,33 @@ public class PlayerController : MonoBehaviour
       PlayerIsDeath = true;
       GameIsOver = true;
     }
-      
     else
       numberOfLives -= 0.1f;
 
     currentHealthBar.rectTransform.localScale = new Vector3(numberOfLives, 1, 1);
+  }
+
+  void UpdateItemUI()
+  {
+    if (currentItemID == 1)
+    {
+      currentItem.color = Color.white;
+      currentItem.sprite = FireballSprite;
+    }
+    else if (currentItemID == 2)
+    {
+      currentItem.color = Color.white;
+      currentItem.sprite = GrenadeSprite;
+    }
+    else if (currentItemID == 3)
+    {
+      currentItem.color = Color.white;
+      currentItem.sprite = FreezeSprite;
+    }
+    else if (currentItemID == 0)
+    {
+      currentItem.color = Color.clear;
+    }
   }
 }
 
