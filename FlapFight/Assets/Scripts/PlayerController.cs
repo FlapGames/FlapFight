@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour
   public float startKnockedTime;
   private Vector2 knockbackVector;
 
+  private float debuffTime;
+
   public float shieldDurability = 100;
 
   public float amountOfJumpsLeft;
@@ -104,8 +106,6 @@ public class PlayerController : MonoBehaviour
 
     isTouchingWall = Physics2D.OverlapCircle(wallCheckPoint.position, wallCheckRadius, ground);
 
-    //Debug.Log(isTouchingWall);
-
     //Movement
 
     //Directional
@@ -194,13 +194,13 @@ public class PlayerController : MonoBehaviour
     {
       if (Input.GetKeyDown(attackMelee))
       {
+        animator.SetTrigger("AttackMeleePunchOne");
         timeBetweenMeleeAttack = startTimeBetweenMeleeAttack;
         Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(meleeAttackPosition.position, meleeAttackRange, enemies);
         for (int i = 0; i < enemiesToDamage.Length; i++)
         {
           enemiesToDamage[i].GetComponent<PlayerController>().TakeDamage(meleeDamage, rigidbody2D.position.x, rigidbody2D.position.y);
         }
-        animator.SetTrigger("AttackMeleePunchOne");
         SoundManagerScript.PlaySound("Melee");
       }
     }
@@ -228,7 +228,14 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-          //tempItem = Hourglass;
+          if (this.gameObject.transform.CompareTag("Player1"))
+          {
+            GameObject.FindWithTag("Player2").GetComponent<PlayerController>().ApplySlowness();
+          }
+          else
+          {
+            GameObject.FindWithTag("Player1").GetComponent<PlayerController>().ApplySlowness();
+          }
         }
         currentItemID = 0;
         UpdateItemUI();
@@ -297,12 +304,23 @@ public class PlayerController : MonoBehaviour
       }
     }
 
-    //TODO
     if (isBlocking && shieldDurability > 16)
     {
       animator.SetTrigger("Blocking");
     }
 
+
+    //Debuffs
+
+    if (debuffTime > 0)
+    {
+      debuffTime -= Time.deltaTime;
+      moveSpeed = 5;
+    }
+    else
+    {
+      moveSpeed = 10;
+    }
     
   }
 
@@ -326,6 +344,11 @@ public class PlayerController : MonoBehaviour
   public void PickUpItem(int itemID)
   {
     currentItemID = itemID;
+  }
+
+  public void ApplySlowness()
+  {
+    this.debuffTime = 2f;
   }
 
   public void OnDrawGizmosSelected()
