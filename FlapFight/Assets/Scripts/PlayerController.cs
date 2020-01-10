@@ -77,7 +77,7 @@ public class PlayerController : MonoBehaviour
   public Sprite GrenadeSprite;
 
   public float numberOfLives;
-  float damage = 0.1f;
+  //float damage = 0.1f;
 
   // Start is called before the first frame update
   void Start()
@@ -337,8 +337,6 @@ public class PlayerController : MonoBehaviour
     knockedTime = startKnockedTime;
 
     updateHealthbar();
-    //Debug.Log(rigidbody2D.position.x - enemyPositionX);
-    //Debug.Log(rigidbody2D.position.y - enemyPositionY);
 
     knockbackVector = new Vector2((rigidbody2D.position.x - enemyPositionX) * knockbackMultiplier, (rigidbody2D.position.y - enemyPositionY) * knockbackMultiplier * 0.5f);
   }
@@ -362,14 +360,14 @@ public class PlayerController : MonoBehaviour
   
   public void updateHealthbar()
   {
-    if (numberOfLives - damage <= 0)
+    if (numberOfLives - knockbackMultiplier <= 0)
     {
       numberOfLives = 0;
       PlayerIsDeath = true;
       GameIsOver = true;
     }
     else
-      numberOfLives -= damage;
+      numberOfLives -= knockbackMultiplier;
 
     currentHealthBar.rectTransform.localScale = new Vector3(numberOfLives, 1, 1);
   }
