@@ -366,10 +366,8 @@ public class PlayerController : MonoBehaviour
       PlayerIsDeath = true;
       GameIsOver = true;
     }
-    else
-      numberOfLives -= knockbackMultiplier;
 
-    currentHealthBar.rectTransform.localScale = new Vector3(numberOfLives, 1, 1);
+    currentHealthBar.rectTransform.localScale = new Vector3(numberOfLives - knockbackMultiplier, 1, 1);
   }
 
   void UpdateItemUI()
