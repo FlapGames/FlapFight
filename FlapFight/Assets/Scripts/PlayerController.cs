@@ -348,7 +348,7 @@ public class PlayerController : MonoBehaviour
 
   public void ApplySlowness()
   {
-    this.debuffTime = 2f;
+    this.debuffTime = 5f;
   }
 
   public void OnDrawGizmosSelected()
