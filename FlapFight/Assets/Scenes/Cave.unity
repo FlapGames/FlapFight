@@ -1965,6 +1965,21 @@ PrefabInstance:
       propertyPath: currentHealthBar
       value: 
       objectReference: {fileID: 719985344}
+    - target: {fileID: 3715266048260814403, guid: c4d818284e6f7c1499e1423d014b6f98,
+        type: 3}
+      propertyPath: attackRanged
+      value: 274
+      objectReference: {fileID: 0}
+    - target: {fileID: 3715266048260814403, guid: c4d818284e6f7c1499e1423d014b6f98,
+        type: 3}
+      propertyPath: block
+      value: 303
+      objectReference: {fileID: 0}
+    - target: {fileID: 3715266048260814403, guid: c4d818284e6f7c1499e1423d014b6f98,
+        type: 3}
+      propertyPath: useItem
+      value: 279
+      objectReference: {fileID: 0}
     - target: {fileID: 3715266048260814407, guid: c4d818284e6f7c1499e1423d014b6f98,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -59322,7 +59337,7 @@ PrefabInstance:
     - target: {fileID: 1609262038750110609, guid: 0007aa3e1e8fb8a4ca6f915ec0c09d7e,
         type: 3}
       propertyPath: attackMelee
-      value: 114
+      value: 102
       objectReference: {fileID: 0}
     - target: {fileID: 1609262038750110609, guid: 0007aa3e1e8fb8a4ca6f915ec0c09d7e,
         type: 3}
