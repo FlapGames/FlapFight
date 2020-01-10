@@ -50,13 +50,12 @@ public class GrenadeProjectile : Projectile
     timeSinceSwap = 0f;
 
   }
-  private void OnTriggerEnter2D(Collider2D other)
+  private new void OnTriggerEnter2D(Collider2D other)
   {
-    if (other.transform.CompareTag("Player1") || other.transform.CompareTag("Player2"))
-    {
-      //other.GetComponent<PlayerController>().TakeDamage(0.2f, rigidbody2D.position.x, rigidbody2D.position.y);
+
+      other.GetComponent<PlayerController>().TakeDamage(0.3f, rigidbody2D.position.x, rigidbody2D.position.y);
       SpawnExplosion();
-    }
+
 
   }
 

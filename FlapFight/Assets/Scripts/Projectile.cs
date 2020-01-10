@@ -11,18 +11,18 @@ public class Projectile : MonoBehaviour
     public GameObject ProjectileExplosion;
 
     // Start is called before the first frame update
-    void Start()
+    protected void Start()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
-    void Update()
+  // Update is called once per frame
+    protected void Update()
     {
         rigidbody2D.velocity = new Vector2(projectileSpeed * transform.localScale.x, 0);
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    protected void OnTriggerEnter2D(Collider2D other)
     {
 
         Destroy(gameObject);

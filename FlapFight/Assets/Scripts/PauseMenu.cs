@@ -72,7 +72,7 @@ public class PauseMenu : MonoBehaviour
 
   public void Restart()
   {
-    SceneManager.LoadScene(1);
+    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
   }
 
   void CalculateWinner()
@@ -80,6 +80,7 @@ public class PauseMenu : MonoBehaviour
     if (Player1.GetComponent<PlayerController>().PlayerIsDeath || Player2.GetComponent<PlayerController>().numberOfLives > Player1.GetComponent<PlayerController>().numberOfLives)
     {
       Winner.text = "PLAYER 2";
+      Winner.color = Color.blue;
     }
     else if (Player2.GetComponent<PlayerController>().PlayerIsDeath || Player2.GetComponent<PlayerController>().numberOfLives < Player1.GetComponent<PlayerController>().numberOfLives)
     {

@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour
   public float startKnockedTime;
   private Vector2 knockbackVector;
 
+  private float debuffTime;
+
   public float shieldDurability = 100;
 
   public float amountOfJumpsLeft;
@@ -68,8 +70,14 @@ public class PlayerController : MonoBehaviour
   public bool PlayerIsDeath;
 
   public Image currentHealthBar;
+  public Image currentItem;
+
+  public Sprite FireballSprite;
+  public Sprite FreezeSprite;
+  public Sprite GrenadeSprite;
 
   public float numberOfLives;
+  //float damage = 0.1f;
 
   // Start is called before the first frame update
   void Start()
@@ -98,8 +106,6 @@ public class PlayerController : MonoBehaviour
     isGrounded = Physics2D.OverlapCircle(groundCheckPoint.position, groundCheckRadius, ground);
 
     isTouchingWall = Physics2D.OverlapCircle(wallCheckPoint.position, wallCheckRadius, ground);
-
-    //Debug.Log(isTouchingWall);
 
     //Movement
 
@@ -189,13 +195,13 @@ public class PlayerController : MonoBehaviour
     {
       if (Input.GetKeyDown(attackMelee))
       {
+        animator.SetTrigger("AttackMeleePunchOne");
         timeBetweenMeleeAttack = startTimeBetweenMeleeAttack;
         Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(meleeAttackPosition.position, meleeAttackRange, enemies);
         for (int i = 0; i < enemiesToDamage.Length; i++)
         {
           enemiesToDamage[i].GetComponent<PlayerController>().TakeDamage(meleeDamage, rigidbody2D.position.x, rigidbody2D.position.y);
         }
-        animator.SetTrigger("AttackMeleePunchOne");
         SoundManagerScript.PlaySound("Melee");
       }
     }
@@ -208,6 +214,8 @@ public class PlayerController : MonoBehaviour
 
     if(currentItemID != 0)
     {
+      
+
       if(Input.GetKeyDown(useItem))
       {
         if (currentItemID == 1)
@@ -222,11 +230,19 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-          //tempItem = Hourglass;
+          if (this.gameObject.transform.CompareTag("Player1"))
+          {
+            GameObject.FindWithTag("Player2").GetComponent<PlayerController>().ApplySlowness();
+          }
+          else
+          {
+            GameObject.FindWithTag("Player1").GetComponent<PlayerController>().ApplySlowness();
+          }
         }
         currentItemID = 0;
       }
     }
+    UpdateItemUI();
 
     //Blocking    
 
@@ -290,12 +306,23 @@ public class PlayerController : MonoBehaviour
       }
     }
 
-    //TODO
     if (isBlocking && shieldDurability > 16)
     {
       animator.SetTrigger("Blocking");
     }
 
+
+    //Debuffs
+
+    if (debuffTime > 0)
+    {
+      debuffTime -= Time.deltaTime;
+      moveSpeed = 5;
+    }
+    else
+    {
+      moveSpeed = 10;
+    }
     
   }
 
@@ -310,8 +337,6 @@ public class PlayerController : MonoBehaviour
     knockedTime = startKnockedTime;
 
     updateHealthbar();
-    //Debug.Log(rigidbody2D.position.x - enemyPositionX);
-    //Debug.Log(rigidbody2D.position.y - enemyPositionY);
 
     knockbackVector = new Vector2((rigidbody2D.position.x - enemyPositionX) * knockbackMultiplier, (rigidbody2D.position.y - enemyPositionY) * knockbackMultiplier * 0.5f);
   }
@@ -319,6 +344,11 @@ public class PlayerController : MonoBehaviour
   public void PickUpItem(int itemID)
   {
     currentItemID = itemID;
+  }
+
+  public void ApplySlowness()
+  {
+    this.debuffTime = 5f;
   }
 
   public void OnDrawGizmosSelected()
@@ -330,16 +360,36 @@ public class PlayerController : MonoBehaviour
   
   public void updateHealthbar()
   {
-    if (numberOfLives - 0.1f <= 0)
+    if (numberOfLives - knockbackMultiplier <= 0)
     {
       numberOfLives = 0;
       PlayerIsDeath = true;
       GameIsOver = true;
     }
-      
-    else
-      numberOfLives -= 0.1f;
 
-    currentHealthBar.rectTransform.localScale = new Vector3(numberOfLives, 1, 1);
+    currentHealthBar.rectTransform.localScale = new Vector3(numberOfLives - knockbackMultiplier, 1, 1);
+  }
+
+  void UpdateItemUI()
+  {
+    if (currentItemID == 1)
+    {
+      currentItem.color = Color.white;
+      currentItem.sprite = FireballSprite;
+    }
+    else if (currentItemID == 2)
+    {
+      currentItem.color = Color.white;
+      currentItem.sprite = GrenadeSprite;
+    }
+    else if (currentItemID == 3)
+    {
+      currentItem.color = Color.white;
+      currentItem.sprite = FreezeSprite;
+    }
+    else if (currentItemID == 0)
+    {
+      currentItem.color = Color.clear;
+    }
   }
 }
