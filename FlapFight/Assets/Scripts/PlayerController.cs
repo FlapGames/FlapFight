@@ -5,27 +5,6 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
-  public float knockbackMultiplier;
-  private float knockedTime;
-  public float startKnockedTime;
-  private Vector2 knockbackVector;
-
-  private float debuffTime;
-
-  public float shieldDurability = 100;
-
-  public float amountOfJumpsLeft;
-
-  public float moveSpeed;
-  public float jumpForce;
-
-  private float timeBetweenMeleeAttack;
-  public float startTimeBetweenMeleeAttack;
-
-  private float timeBetweenRangedAttack;
-  public float startTimeBetweenRangedAttack;
-  private bool isPlayerShooting;
-
   public KeyCode left;
   public KeyCode right;
   public KeyCode jump;
@@ -35,6 +14,8 @@ public class PlayerController : MonoBehaviour
   public KeyCode useItem;
 
   private Rigidbody2D rigidbody2D;
+
+  private Animator animator;
 
   public Transform groundCheckPoint;
   public float groundCheckRadius;
@@ -47,7 +28,26 @@ public class PlayerController : MonoBehaviour
   public bool isTouchingWall;
   public bool isBlocking;
 
-  private Animator animator;
+  public float moveSpeed;
+  public float jumpForce;
+
+  public float knockbackMultiplier;
+  private float knockedTime;
+  public float startKnockedTime;
+  private Vector2 knockbackVector;
+
+  private float debuffTime;
+
+  public float shieldDurability = 100;
+
+  public float amountOfJumpsLeft;
+
+  private float timeBetweenMeleeAttack;
+  public float startTimeBetweenMeleeAttack;
+
+  private float timeBetweenRangedAttack;
+  public float startTimeBetweenRangedAttack;
+  private bool isPlayerShooting;
 
   public GameObject Projectile;
   public Transform throwPoint;
@@ -57,17 +57,13 @@ public class PlayerController : MonoBehaviour
   public float meleeAttackRange;
   public float meleeDamage;
 
+  public LayerMask enemies;
+
   public GameObject Fireball;
   public GameObject Grenade;
   public GameObject Hourglass;
 
   public int currentItemID = 0;
-
-  public LayerMask enemies;
-
-  public static bool GameIsOver;
-
-  public bool PlayerIsDeath;
 
   public Image currentHealthBar;
   public Image currentItem;
@@ -77,42 +73,75 @@ public class PlayerController : MonoBehaviour
   public Sprite GrenadeSprite;
 
   public float numberOfLives;
-  //float damage = 0.1f;
 
-  // Start is called before the first frame update
+  public bool PlayerIsDeath;
+
+  public static bool GameIsOver;
+
+
   void Start()
   {
     rigidbody2D = GetComponent<Rigidbody2D>();
     animator = GetComponent<Animator>();
+
     GameIsOver = false;
+
     Time.timeScale = 1f;
+
     numberOfLives = 1f;
+
     PlayerIsDeath = false;
   }
 
-  // Update is called once per frame
   void Update()
   {
-    //Death
+    CheckForDeath();
+
+    UpdateGroundedStatus();
+
+    UpdateDirectionalMovement();
+    UpdateJumping();
+
+    UpdateKnockback();
+
+    UpdateAttackRanged();
+    UpdateAttackMelee();
+    UpdateAttackSpecial();
+
+    UpdateBlock();
+
+    UpdateItemUI();
+
+    UpdateSpriteFlipping();
+    UpdateAnimator();
+
+    UpdateDebuffs();
+
+  }
+
+  private void CheckForDeath()
+  {
     if (rigidbody2D.position.y < -6 || numberOfLives == 0)
     {
       PlayerIsDeath = true;
       GameIsOver = true;
       this.gameObject.SetActive(false);
     }
+  }
 
-    //Check for Ground, needed for jumping
-
+  private void UpdateGroundedStatus()
+  {
     isGrounded = Physics2D.OverlapCircle(groundCheckPoint.position, groundCheckRadius, ground);
 
     isTouchingWall = Physics2D.OverlapCircle(wallCheckPoint.position, wallCheckRadius, ground);
+  }
 
-    //Movement
-
-    //Directional
-
+  private void UpdateDirectionalMovement()
+  {
+    //If both left and right are pressed, no movement on the x-axis
+    //Otherwise move in the appropriate direction
     if ((Input.GetKey(left) && Input.GetKey(right)) || (!Input.GetKey(left) && !Input.GetKey(right)))
-    {   //if both left and right are pressed, no movement on the x-axis
+    {
       rigidbody2D.velocity = new Vector2(0, rigidbody2D.velocity.y);
     }
     else if (Input.GetKey(left))
@@ -127,43 +156,44 @@ public class PlayerController : MonoBehaviour
     {
       rigidbody2D.velocity = new Vector2(0, rigidbody2D.velocity.y);
     }
+  }
 
-    //Jumping
-
+  private void UpdateJumping()
+  {
     if (Input.GetKeyDown(jump) && amountOfJumpsLeft > 0 && !isPlayerShooting)
     {
       amountOfJumpsLeft--;
-      rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, jumpForce);
-      SoundManagerScript.PlaySound("Jumpsound");
-      animator.SetTrigger("JumpInitiate");
 
+      rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, jumpForce);
+
+      SoundManagerScript.PlaySound("Jumpsound");
+
+      animator.SetTrigger("JumpInitiate");
     }
 
     if (isGrounded || isTouchingWall)
     {
       amountOfJumpsLeft = 1;
     }
+  }
 
-
-
-    //Knockback
-
+  private void UpdateKnockback()
+  {
     if (knockedTime > 0)
     {
       rigidbody2D.velocity = knockbackVector;
       knockedTime -= Time.deltaTime;
     }
+  }
 
-    //Attacks
-
-    //AttackRanged
-
+  private void UpdateAttackRanged()
+  {
     if (timeBetweenRangedAttack <= 0 && isPlayerShooting)
     {
-
       isPlayerShooting = false;
+
       GameObject projectileClone = (GameObject)Instantiate(Projectile, throwPoint.position, throwPoint.rotation);
-      //Destroy(projectileClone, 0.5f);
+
       projectileClone.transform.localScale = transform.localScale;
 
     }
@@ -187,21 +217,25 @@ public class PlayerController : MonoBehaviour
     {
       timeBetweenRangedAttack -= Time.deltaTime;
     }
+  }
 
-
-    //AttackMelee
-
+  private void UpdateAttackMelee()
+  {
     if (timeBetweenMeleeAttack <= 0)
     {
       if (Input.GetKeyDown(attackMelee))
       {
         animator.SetTrigger("AttackMeleePunchOne");
+
         timeBetweenMeleeAttack = startTimeBetweenMeleeAttack;
+
         Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(meleeAttackPosition.position, meleeAttackRange, enemies);
+
         for (int i = 0; i < enemiesToDamage.Length; i++)
         {
           enemiesToDamage[i].GetComponent<PlayerController>().TakeDamage(meleeDamage, rigidbody2D.position.x, rigidbody2D.position.y);
         }
+
         SoundManagerScript.PlaySound("Melee");
       }
     }
@@ -209,14 +243,15 @@ public class PlayerController : MonoBehaviour
     {
       timeBetweenMeleeAttack -= Time.deltaTime;
     }
+  }
 
-    //Attack Special
-
-    if(currentItemID != 0)
+  private void UpdateAttackSpecial()
+  {
+    if (currentItemID != 0)
     {
-      
 
-      if(Input.GetKeyDown(useItem))
+
+      if (Input.GetKeyDown(useItem))
       {
         if (currentItemID == 1)
         {
@@ -242,10 +277,10 @@ public class PlayerController : MonoBehaviour
         currentItemID = 0;
       }
     }
-    UpdateItemUI();
+  }
 
-    //Blocking    
-
+  private void UpdateBlock()
+  {
     if (Input.GetKey(block) && shieldDurability > 15)
     {
       isBlocking = true;
@@ -253,7 +288,6 @@ public class PlayerController : MonoBehaviour
       {
         shieldDurability -= 0.16f;
       }
-
     }
     else
     {
@@ -264,10 +298,10 @@ public class PlayerController : MonoBehaviour
         shieldDurability += 0.08f;
       }
     }
+  }
 
-
-    //Sprite flipping
-
+  private void UpdateSpriteFlipping()
+  {
     if (rigidbody2D.velocity.x < 0)
     {
       transform.localScale = new Vector3(-1, 1, 1);
@@ -276,9 +310,10 @@ public class PlayerController : MonoBehaviour
     {
       transform.localScale = new Vector3(1, 1, 1);
     }
+  }
 
-    //Animator
-
+  private void UpdateAnimator()
+  {
     animator.SetFloat("Speed", Mathf.Abs(rigidbody2D.velocity.x));
     animator.SetBool("Grounded", isGrounded);
     animator.SetBool("Shooting", isPlayerShooting);
@@ -310,10 +345,10 @@ public class PlayerController : MonoBehaviour
     {
       animator.SetTrigger("Blocking");
     }
+  }
 
-
-    //Debuffs
-
+  private void UpdateDebuffs()
+  {
     if (debuffTime > 0)
     {
       debuffTime -= Time.deltaTime;
@@ -323,7 +358,6 @@ public class PlayerController : MonoBehaviour
     {
       moveSpeed = 10;
     }
-    
   }
 
   public void TakeDamage(float damage, float enemyPositionX, float enemyPositionY)
@@ -333,10 +367,12 @@ public class PlayerController : MonoBehaviour
       shieldDurability -= 20;
       return;
     }
+
     knockbackMultiplier += damage;
+
     knockedTime = startKnockedTime;
 
-    updateHealthbar();
+    UpdateHealthbar();
 
     knockbackVector = new Vector2((rigidbody2D.position.x - enemyPositionX) * knockbackMultiplier, (rigidbody2D.position.y - enemyPositionY) * knockbackMultiplier * 0.5f);
   }
@@ -351,19 +387,14 @@ public class PlayerController : MonoBehaviour
     this.debuffTime = 5f;
   }
 
-  public void OnDrawGizmosSelected()
-  {
-    Gizmos.color = Color.red;
-    Gizmos.DrawWireSphere(meleeAttackPosition.position, meleeAttackRange);
-  }
-
-  
-  public void updateHealthbar()
+  public void UpdateHealthbar()
   {
     if (numberOfLives - knockbackMultiplier <= 0)
     {
       numberOfLives = 0;
+
       PlayerIsDeath = true;
+
       GameIsOver = true;
     }
 

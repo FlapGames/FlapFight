@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class MapMenu : MonoBehaviour
 {
   public static bool survivalMode;
+
   public static bool timeMode;
 
   public void PlayMap1()

@@ -17,45 +17,53 @@ public class ItemPickup : MonoBehaviour
   float currentTimeInvisible;
   bool invisible;
 
-  public void OnTriggerEnter2D(Collider2D collision)
-  {
-    PlayerController player = collision.GetComponent<PlayerController>();
-    if (player != null)
-    {
-      player.PickUpItem(itemID);
-      currentTimeInvisible = startTimeInvisible;
-      invisible = true;
-    }
-
-
-  }
-
-  // Start is called before the first frame update
   void Start()
   {
     boxCollider = gameObject.GetComponent<BoxCollider2D>();
-    spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
-    SetRandomItem();
-    UpdateSprite();
 
+    spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+
+    SetRandomItem();
+
+    UpdateSprite();
   }
 
-  // Update is called once per frame
   void Update()
   {
     if (invisible)
     {
       spriteRenderer.enabled = false;
+
       boxCollider.enabled = false;
+
       currentTimeInvisible -= Time.deltaTime;
+
       if (currentTimeInvisible <= 0)
       {
         SetRandomItem();
+
         UpdateSprite();
+
         invisible = false;
+
         spriteRenderer.enabled = true;
+
         boxCollider.enabled = true;
       }
+    }
+  }
+
+  public void OnTriggerEnter2D(Collider2D collision)
+  {
+    PlayerController player = collision.GetComponent<PlayerController>();
+
+    if (player != null)
+    {
+      player.PickUpItem(itemID);
+
+      currentTimeInvisible = startTimeInvisible;
+
+      invisible = true;
     }
   }
 
@@ -66,7 +74,7 @@ public class ItemPickup : MonoBehaviour
 
   void UpdateSprite()
   {
-    if(itemID == 1)
+    if (itemID == 1)
     {
       spriteRenderer.sprite = FireballSprite;
     }

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class GrenadeProjectile : Projectile
 {
-
   bool bounceUp = false;
   float timeSinceSwap = 0;
 
@@ -13,7 +12,9 @@ public class GrenadeProjectile : Projectile
   void Start()
   {
     rigidbody2D = GetComponent<Rigidbody2D>();
+
     projectileSpeed = 8f;
+
     timeUntilExplosion = 1.2f;
   }
 
@@ -28,9 +29,8 @@ public class GrenadeProjectile : Projectile
       rigidbody2D.velocity = new Vector2(projectileSpeed * transform.localScale.x, Mathf.Pow((timeSinceSwap * 3 + 1), 2) * -1.3f);
     }
 
-
-
     timeSinceSwap += Time.deltaTime;
+
     if (timeSinceSwap >= 0.4f && bounceUp == true)
     {
       bounceUp = !bounceUp;
@@ -38,6 +38,7 @@ public class GrenadeProjectile : Projectile
     }
 
     timeUntilExplosion -= Time.deltaTime;
+
     if (timeUntilExplosion <= 0f)
     {
       SpawnExplosion();
@@ -48,15 +49,11 @@ public class GrenadeProjectile : Projectile
   {
     bounceUp = !bounceUp;
     timeSinceSwap = 0f;
-
   }
   private new void OnTriggerEnter2D(Collider2D other)
   {
-
-      other.GetComponent<PlayerController>().TakeDamage(0.3f, rigidbody2D.position.x, rigidbody2D.position.y);
-      SpawnExplosion();
-
-
+    other.GetComponent<PlayerController>().TakeDamage(0.3f, rigidbody2D.position.x, rigidbody2D.position.y);
+    SpawnExplosion();
   }
 
   private void SpawnExplosion()

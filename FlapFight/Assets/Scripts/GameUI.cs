@@ -41,5 +41,4 @@ public class GameUI : MonoBehaviour
       coundownText.text = currentTime.ToString("00:00");
     }
   }
-
 }
